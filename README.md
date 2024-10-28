@@ -1,2 +1,2 @@
-# Hazel
-Hazel Engine
+# Azer
+Azer Engine
