@@ -27,9 +27,15 @@
     <ClInclude Include="src\Azer\EntryPoint.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

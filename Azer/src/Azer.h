@@ -3,6 +3,7 @@
 // For use by Azer applications
 
 #include "Azer/Application.h"
+#include "Azer/Log.h"
 
 // ---Entry Point---
 

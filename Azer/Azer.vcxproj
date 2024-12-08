@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Azer\Log.h" />
     <ClInclude Include="src\Azer\Application.h" />
     <ClInclude Include="src\Azer.h" />
     <ClInclude Include="src\Azer\Core.h" />
     <ClInclude Include="src\Azer\EntryPoint.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Azer\Log.cpp" />
     <ClCompile Include="src\Azer\Application.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -121,6 +123,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AZ_PLATFORM_WINDOWS;AZ_BUILD_DLL;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Azer\vendor\spdlog\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +139,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>AZ_PLATFORM_WINDOWS;AZ_BUILD_DLL;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)Azer\vendor\spdlog\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/utf-8</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

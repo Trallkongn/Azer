@@ -6,6 +6,11 @@ extern Azer::Application* Azer::CreateApplication();
 
 int main(int argc,char** argv)
 {
+	Azer::Log::Init();
+	AZ_CORE_WARN("Initialized Log!");
+	int a = 5;
+	AZ_INFO("Hello! Var={0}",a);
+
 	auto app = Azer::CreateApplication();
 	app->Run();
 	delete app;
