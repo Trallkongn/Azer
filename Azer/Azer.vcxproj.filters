@@ -1,47 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="..">
-      <UniqueIdentifier>{61705900-4DFC-870B-B6AA-880BA255880B}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src">
-      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Azer">
-      <UniqueIdentifier>{0EE81BCF-FAB4-76DA-23CE-64820FFAAB68}</UniqueIdentifier>
+    <Filter Include="Azer">
+      <UniqueIdentifier>{97C8827C-83FF-830D-2CEC-69101802000F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Azer.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Azer.h" />
     <ClInclude Include="src\Azer\Application.h">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Core.h">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\EntryPoint.h">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Log.h">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Log.cpp">
-      <Filter>src\Azer</Filter>
+      <Filter>Azer</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\configurations:Release">
-      <Filter>..</Filter>
-    </None>
-    <None Include="..\system:windows">
-      <Filter>..</Filter>
-    </None>
   </ItemGroup>
 </Project>

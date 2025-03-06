@@ -20,14 +20,14 @@ namespace Azer {
 
 }
 
-// 核心日志宏 Core log macros
+// Core log macros
 #define AZ_CORE_ERROR(...)	 ::Azer::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define AZ_CORE_INFO(...)	 ::Azer::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define AZ_CORE_TRACE(...)	 ::Azer::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define AZ_CORE_WARN(...)	 ::Azer::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define AZ_CORE_FATAL(...)	 ::Azer::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
-// 用户日志宏 Client log macros
+// Client log macros
 #define AZ_ERROR(...)	 ::Azer::Log::GetClientLogger()->error(__VA_ARGS__)
 #define AZ_INFO(...)	 ::Azer::Log::GetClientLogger()->info(__VA_ARGS__)
 #define AZ_TRACE(...)	 ::Azer::Log::GetClientLogger()->trace(__VA_ARGS__)

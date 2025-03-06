@@ -8,7 +8,6 @@ namespace Azer {
 
 	void Log::Init()
 	{
-		// 时间戳、日志名、实际的日志消息
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 		s_CoreLogger = spdlog::stdout_color_mt("Azer");
 		s_CoreLogger->set_level(spdlog::level::trace);
