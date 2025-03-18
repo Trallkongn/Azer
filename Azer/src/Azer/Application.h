@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.h"
+#include "Azer/Events/Event.h"
 
 namespace Azer {
 

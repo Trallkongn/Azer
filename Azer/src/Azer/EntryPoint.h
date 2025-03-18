@@ -9,7 +9,7 @@ int main(int argc,char** argv)
 	Azer::Log::Init();
 	AZ_CORE_WARN("Initialized Log!");
 	int a = 5;
-	AZ_INFO("Hello! Var={0}",a);
+	AZ_INFO("Welcome!",a);
 
 	auto app = Azer::CreateApplication();
 	app->Run();

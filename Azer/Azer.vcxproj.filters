@@ -4,6 +4,9 @@
     <Filter Include="Azer">
       <UniqueIdentifier>{97C8827C-83FF-830D-2CEC-69101802000F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Azer\Events">
+      <UniqueIdentifier>{9B04DCAA-07BA-54A0-90AE-4E77FC624BA4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Azer.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Azer\EntryPoint.h">
       <Filter>Azer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Events\ApplicationEvent.h">
+      <Filter>Azer\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Events\Event.h">
+      <Filter>Azer\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Events\KeyEvent.h">
+      <Filter>Azer\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Events\MouseEvent.h">
+      <Filter>Azer\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Log.h">
       <Filter>Azer</Filter>
