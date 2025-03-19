@@ -1,4 +1,7 @@
 #pragma once
+
+#include "azpch.h"
+
 #include "Core.h"
 #include "Azer/Events/Event.h"
 

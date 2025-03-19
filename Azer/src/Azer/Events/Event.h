@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Azer/Core.h"
+#include "azpch.h"
 
-#include <string>
-#include <functional>
+#include "Azer/Core.h"
 
 namespace Azer {
 

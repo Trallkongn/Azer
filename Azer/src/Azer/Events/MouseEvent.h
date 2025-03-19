@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Event.h"
+#include "azpch.h"
 
-#include <sstream>
+#include "Event.h"
 
 namespace Azer {
 	class AZER_API MouseMovedEvent : public Event

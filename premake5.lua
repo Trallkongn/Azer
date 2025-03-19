@@ -17,6 +17,9 @@ project "Azer"
   targetdir ("bin/" .. outputdir .. "/%{prj.name}")
   objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+  pchheader "azpch.h"
+  pchsource "Azer/src/azpch.h"
+
   files
   {
     "%{prj.name}/src/**.h",

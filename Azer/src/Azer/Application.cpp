@@ -1,7 +1,8 @@
+#include "azpch.h"
 #include "Application.h"
 #include "Azer/Log.h"
 #include "Azer/Events/ApplicationEvent.h"
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
+#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE // ADD THIS LINE	
 
 namespace Azer {
 

@@ -34,6 +34,7 @@
     <ClInclude Include="src\Azer\Log.h">
       <Filter>Azer</Filter>
     </ClInclude>
+    <ClInclude Include="src\azpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp">
@@ -42,5 +43,6 @@
     <ClCompile Include="src\Azer\Log.cpp">
       <Filter>Azer</Filter>
     </ClCompile>
+    <ClCompile Include="src\azpch.cpp" />
   </ItemGroup>
 </Project>

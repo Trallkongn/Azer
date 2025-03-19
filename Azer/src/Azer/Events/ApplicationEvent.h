@@ -1,8 +1,9 @@
 #pragma once
 
+#include "azpch.h"
+
 #include "Event.h"
 
-#include <sstream>
 
 namespace Azer {
 
