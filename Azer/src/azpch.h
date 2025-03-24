@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Azer/Log.h"
+
 #ifdef AZ_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // AZ_PLATFORM_WINDOWS

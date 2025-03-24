@@ -10,6 +10,11 @@ workspace "Azer"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Azer/vendor/GLFW/include"
+include "Azer/vendor/GLFW"
+
 project "Azer"
   location "Azer"
   kind "SharedLib"
@@ -30,6 +35,13 @@ project "Azer"
   {
     "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include",
+    "%{IncludeDir.GLFW}"
+  }
+
+  links
+  {
+    "GLFW",
+    "opengl32.lib"
   }
 
   filter "system:windows"
