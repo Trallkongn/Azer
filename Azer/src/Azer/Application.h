@@ -6,6 +6,7 @@
 #include "Azer/Events/Event.h"
 #include "Window.h"
 #include "Azer/Events/ApplicationEvent.h"
+#include "Azer/LayerStack.h"
 
 namespace Azer {
 
@@ -18,10 +19,14 @@ namespace Azer {
 		void Run();
 
 		void OnEvent(Event& e);
+
+		void PushLayer(Layer* layer);
+		void PushOverlay(Layer* overlay);
 	private:
-		bool onWindowClosed(WindowCloseEvent& e);
+		bool onWindowClosed(WindowCloseEvent& e);	
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		LayerStack m_LayerStack;
 	};
 
 	// To be defined in CLIENT

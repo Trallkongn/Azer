@@ -37,6 +37,12 @@
     <ClInclude Include="src\Azer\Events\MouseEvent.h">
       <Filter>Azer\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Layer.h">
+      <Filter>Azer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\LayerStack.h">
+      <Filter>Azer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Log.h">
       <Filter>Azer</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp">
+      <Filter>Azer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Layer.cpp">
+      <Filter>Azer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\LayerStack.cpp">
       <Filter>Azer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Log.cpp">

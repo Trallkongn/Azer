@@ -76,7 +76,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>azpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>AZ_PLATFORM_WINDOWS;AZ_BUILD_DLL;AZ_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -84,9 +84,9 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalOptions>/MDd /utf-8 %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
-      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,6 +111,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -138,6 +139,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -161,6 +163,8 @@
     <ClInclude Include="src\Azer\Events\Event.h" />
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
     <ClInclude Include="src\Azer\Events\MouseEvent.h" />
+    <ClInclude Include="src\Azer\Layer.h" />
+    <ClInclude Include="src\Azer\LayerStack.h" />
     <ClInclude Include="src\Azer\Log.h" />
     <ClInclude Include="src\Azer\Window.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -168,11 +172,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp" />
+    <ClCompile Include="src\Azer\Layer.cpp" />
+    <ClCompile Include="src\Azer\LayerStack.cpp" />
     <ClCompile Include="src\Azer\Log.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
-    <ClCompile Include="src\azpch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="src\azpch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

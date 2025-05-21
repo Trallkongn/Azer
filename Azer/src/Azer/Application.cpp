@@ -1,8 +1,6 @@
 #include "azpch.h"
 #include "Application.h"
-
 #include "Azer/Log.h"
-
 
 #include <GLFW/glfw3.h>
 
@@ -29,6 +27,9 @@ namespace Azer {
 		{
 			glClearColor(1, 0, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			for (Layer* layer : m_LayerStack) layer->OnUpdate();
+
 			m_Window->OnUpdate();
 		}
 	}
@@ -38,7 +39,23 @@ namespace Azer {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClosed));
 
-		AZ_CORE_INFO("{0}",e.ToString());
+		AZ_CORE_TRACE("{0}",e.ToString());
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled) break;
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
 	}
 
 	bool Application::onWindowClosed(WindowCloseEvent& e)
