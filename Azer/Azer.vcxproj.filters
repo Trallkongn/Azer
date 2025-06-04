@@ -7,8 +7,14 @@
     <Filter Include="Azer\Events">
       <UniqueIdentifier>{9B04DCAA-07BA-54A0-90AE-4E77FC624BA4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Azer\ImGui">
+      <UniqueIdentifier>{01131BB0-EDCA-5CFD-56D2-355942A9F7ED}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Azer\Events\MouseEvent.h">
       <Filter>Azer\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h">
+      <Filter>Azer\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Layer.h">
       <Filter>Azer</Filter>
     </ClInclude>
@@ -49,6 +58,15 @@
     <ClInclude Include="src\Azer\Window.h">
       <Filter>Azer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\imgui_impl_glfw.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3_loader.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,6 +76,9 @@
     <ClCompile Include="src\Azer\Application.cpp">
       <Filter>Azer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp">
+      <Filter>Azer\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Azer\Layer.cpp">
       <Filter>Azer</Filter>
     </ClCompile>
@@ -66,6 +87,12 @@
     </ClCompile>
     <ClCompile Include="src\Azer\Log.cpp">
       <Filter>Azer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\imgui_impl_glfw.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

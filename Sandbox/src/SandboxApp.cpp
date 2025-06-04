@@ -11,14 +11,17 @@ public:
 
 	void OnUpdate() override
 	{
-		AZ_INFO("ExampleLayer::Update");
+		//AZ_INFO("ExampleLayer::Update");
 	}
 
-	void OnEvent(Azer::Event& event) override
+	void OnEvent(Azer::Event& e) override
 	{
-		AZ_TRACE("{0}", event.ToString());
+		//AZ_TRACE("{0}", e.ToString());
+		//std::cout << "Hello!" << std::endl;
 	}
 };
+
+
 
 class Sandbox : public Azer::Application
 {
@@ -26,6 +29,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushLayer(new Azer::ImGuiLayer());
 	}
 
 	~Sandbox()

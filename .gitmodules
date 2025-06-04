@@ -7,3 +7,6 @@
 [submodule "Azer/vendor/GLFW"]
 	path = Azer/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Azer/vendor/imgui"]
+	path = Azer/vendor/imgui
+	url = https://github.com/ocornut/imgui.git

@@ -2,15 +2,18 @@
 #include "Application.h"
 #include "Azer/Log.h"
 
-#include <GLFW/glfw3.h>
-
+#include "glad/glad.h"
 
 namespace Azer {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
 
+	Application* Application::s_Instance = nullptr;
+
 	Application::Application()
 	{
+		AZ_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 	}
@@ -20,7 +23,6 @@ namespace Azer {
 
 	}
 
-	// 由于未知原因，使用trace之前必须加上set_level，否则不会打印任何内容
 	void Application::Run()
 	{
 		while (m_Running)
@@ -41,6 +43,7 @@ namespace Azer {
 
 		AZ_CORE_TRACE("{0}",e.ToString());
 
+		// from out to inner
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
 			(*--it)->OnEvent(e);
@@ -51,6 +54,7 @@ namespace Azer {
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)

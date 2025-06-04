@@ -5,6 +5,9 @@
 #include "Azer/Events/KeyEvent.h"
 #include "Azer/Events/MouseEvent.h"
 
+#include "glad/glad.h"
+
+
 namespace Azer {
 	static bool s_GLFWInitialized = false;
 
@@ -68,6 +71,12 @@ namespace Azer {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		// Init Glad
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		AZ_CORE_ASSERT(status, "Failed to initialize Glad!")
+
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
