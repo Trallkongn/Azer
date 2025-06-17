@@ -35,7 +35,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Azer::ImGuiLayer()); 
 	}
 
 	~Sandbox()

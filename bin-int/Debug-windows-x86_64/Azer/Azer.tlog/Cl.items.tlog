@@ -1,10 +1,9 @@
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Application.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Application.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiBuild.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiBuild.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiLayer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiLayer.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Layer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Layer.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\LayerStack.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\LayerStack.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Log.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Log.obj
-D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiOpenGLRenderer.obj
-D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\imgui_impl_glfw.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\imgui_impl_glfw.obj
 D:\Datas\GameEngine\Azer\Azer\src\Platform\Windows\WindowsInput.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\WindowsInput.obj
 D:\Datas\GameEngine\Azer\Azer\src\Platform\Windows\WindowsWindow.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\WindowsWindow.obj
 D:\Datas\GameEngine\Azer\Azer\src\azpch.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\azpch.obj
