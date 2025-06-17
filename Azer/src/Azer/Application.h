@@ -8,8 +8,6 @@
 #include "Azer/Events/ApplicationEvent.h"
 #include "Azer/LayerStack.h"
 
-#include "Azer/ImGui/ImGuiLayer.h"
-
 namespace Azer {
 
 	class AZER_API Application
@@ -30,7 +28,6 @@ namespace Azer {
 	private:
 		bool onWindowClosed(WindowCloseEvent& e);	
 		std::unique_ptr<Window> m_Window;
-		ImGuiLayer* m_ImGuiLayer; // AzerÄÚ²¿ImGui
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

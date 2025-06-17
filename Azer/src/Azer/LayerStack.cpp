@@ -3,7 +3,7 @@
 
 Azer::LayerStack::LayerStack()
 {
-	
+	m_LayerInsert = m_Layers.begin();
 }
 
 Azer::LayerStack::~LayerStack()
@@ -13,8 +13,7 @@ Azer::LayerStack::~LayerStack()
 
 void Azer::LayerStack::PushLayer(Layer* layer)
 {
-	m_Layers.emplace(m_Layers.begin() + m_LayerInsertIndex, layer);
-	m_LayerInsertIndex++;
+	m_LayerInsert = m_Layers.emplace(m_LayerInsert, layer);
 }
 
 void Azer::LayerStack::PushOverlay(Layer* overlay)
@@ -28,7 +27,7 @@ void Azer::LayerStack::PopLayer(Layer* layer)
 	if (it != m_Layers.end())
 	{
 		m_Layers.erase(it);
-		m_LayerInsertIndex--;
+		m_LayerInsert--;
 	}
 }
 
