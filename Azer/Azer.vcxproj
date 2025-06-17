@@ -164,13 +164,22 @@
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
     <ClInclude Include="src\Azer\Events\MouseEvent.h" />
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Azer\Input.h" />
+    <ClInclude Include="src\Azer\KeyCodes.h" />
     <ClInclude Include="src\Azer\Layer.h" />
     <ClInclude Include="src\Azer\LayerStack.h" />
     <ClInclude Include="src\Azer\Log.h" />
+    <ClInclude Include="src\Azer\MouseButtonCodes.h" />
     <ClInclude Include="src\Azer\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\IndexBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\Shader.h" />
+    <ClInclude Include="src\Platform\OpenGL\Texture.h" />
+    <ClInclude Include="src\Platform\OpenGL\VertexBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\VertexBufferLayout.h" />
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_glfw.h" />
     <ClInclude Include="src\Platform\OpenGL\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\azpch.h" />
   </ItemGroup>
@@ -181,7 +190,12 @@
     <ClCompile Include="src\Azer\LayerStack.cpp" />
     <ClCompile Include="src\Azer\Log.cpp" />
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\IndexBuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\Shader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\Texture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\VertexBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\azpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

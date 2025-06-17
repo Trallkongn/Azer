@@ -11,13 +11,19 @@ public:
 
 	void OnUpdate() override
 	{
-		//AZ_INFO("ExampleLayer::Update");
+		if (Azer::Input::IsKeyPressed(AZ_KEY_TAB))
+		{
+			AZ_INFO("Tab key is pressed");
+		}
 	}
 
-	void OnEvent(Azer::Event& e) override
+	void OnEvent(Azer::Event& event) override
 	{
-		//AZ_TRACE("{0}", e.ToString());
-		//std::cout << "Hello!" << std::endl;
+		if (event.GetEventType() == Azer::EventType::KeyPressed)
+		{
+			Azer::KeyPressedEvent& e = (Azer::KeyPressedEvent&)event;
+			AZ_INFO("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
@@ -29,7 +35,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushLayer(new Azer::ImGuiLayer());
+		PushLayer(new Azer::ImGuiLayer()); 
 	}
 
 	~Sandbox()

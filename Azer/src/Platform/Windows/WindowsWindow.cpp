@@ -162,6 +162,7 @@ namespace Azer {
 			data.EventCallback(event);
 		});
 	}
+
 	void WindowsWindow::Shutdown()
 	{
 

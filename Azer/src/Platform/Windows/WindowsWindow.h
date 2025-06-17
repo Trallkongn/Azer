@@ -20,6 +20,9 @@ namespace Azer {
 		virtual void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		void SetVSync(bool enable) override;
 		bool IsVSync() const override;
+
+		// Í¨¹ý Window ¼Ì³Ð
+		inline void* GetNativeWindow() const override { return m_Window; };
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
@@ -36,6 +39,7 @@ namespace Azer {
 		};
 
 		WindowData m_Data;
+
 	};
 }
 
