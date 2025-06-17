@@ -10,3 +10,6 @@
 [submodule "Azer/vendor/imgui"]
 	path = Azer/vendor/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "Azer/vendor/glm"]
+	path = Azer/vendor/glm
+	url = https://github.com/g-truc/glm.git

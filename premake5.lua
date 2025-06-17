@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "Azer/vendor/GLFW/include"
 IncludeDir["Glad"] = "Azer/vendor/Glad/include"
 IncludeDir["ImGui"] = "Azer/vendor/imgui"
+IncludeDir["glm"] = "Azer/vendor/glm"
 
 include "Azer/vendor/GLFW"
 include "Azer/vendor/Glad"
@@ -34,7 +35,10 @@ project "Azer"
   files
   {
     "%{prj.name}/src/**.h",
-    "%{prj.name}/src/**.cpp"
+    "%{prj.name}/src/**.cpp",
+    "%{prj.name}/vendor/glm/glm/**.hpp",
+    "%{prj.name}/vendor/glm/glm/**.h",
+    "%{prj.name}/vendor/glm/glm/**.inl",
   }
 
   includedirs
@@ -44,6 +48,7 @@ project "Azer"
     "%{IncludeDir.GLFW}",
     "%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
+    "%{IncludeDir.glm}",
   }
 
   links
@@ -105,7 +110,8 @@ project "Sandbox"
   includedirs
   {
     "Azer/vendor/spdlog/include",
-    "Azer/src"
+    "Azer/src",
+    "%{IncludeDir.glm}"
   }
 
   links
