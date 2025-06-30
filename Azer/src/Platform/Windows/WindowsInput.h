@@ -9,7 +9,7 @@ namespace Azer {
 	public:
 		WindowsInput() = default;
 	public:
-		// Í¨¹ý Input ¼Ì³Ð
+		// extended by Input 
 		bool IsKeyPressedImpl(int keycode) override;
 
 		bool IsMouseButtonPressedImpl(int button) override;

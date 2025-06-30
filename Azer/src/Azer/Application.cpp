@@ -39,7 +39,7 @@ namespace Azer {
 			for (Layer* layer : m_LayerStack) layer->OnUpdate();
 
 
-			// 和ImGui有关的层渲染
+			// ImGui Layer
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack) layer->OnImGuiRender();
 			m_ImGuiLayer->End();

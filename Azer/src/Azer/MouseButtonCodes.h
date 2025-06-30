@@ -1,6 +1,6 @@
 #pragma once
 
-// À´×Ôglfw3
+// from glfw3
 #define AZ_MOUSE_BUTTON_1         0
 #define AZ_MOUSE_BUTTON_2         1
 #define AZ_MOUSE_BUTTON_3         2

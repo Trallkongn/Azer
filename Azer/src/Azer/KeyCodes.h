@@ -1,6 +1,6 @@
 #pragma once
 
-// À´×Ôglfw3
+// from glfw3
 #define AZ_KEY_SPACE              32
 #define AZ_KEY_APOSTROPHE         39  /* ' */
 #define AZ_KEY_COMMA              44  /* , */

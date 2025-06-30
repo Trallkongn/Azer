@@ -1,13 +1,17 @@
 #pragma once
 
 #ifdef AZ_PLATFORM_WINDOWS
-#ifdef AZ_BUILD_DLL
-#define AZER_API __declspec(dllexport)
+#ifdef AZ_DYNAMIC_LINK
+	#ifdef AZ_BUILD_DLL
+	#define AZER_API __declspec(dllexport)
+	#else
+	#define AZER_API __declspec(dllimport)
+	#endif // AZ_BUILD_DLL
 #else
-#define AZER_API __declspec(dllimport)
-#endif // AZ_BUILD_DLL
+	#define AZER_API
+#endif
 #else
-#error Azer only support Windows!
+	#error Azer only support Windows!
 #endif
 
 #ifdef AZ_ENABLE_ASSERTS

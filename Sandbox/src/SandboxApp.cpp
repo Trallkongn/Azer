@@ -1,5 +1,7 @@
 #include <Azer.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public Azer::Layer
 {
 public:
@@ -15,6 +17,16 @@ public:
 		{
 			AZ_INFO("Tab key is pressed");
 		}
+	}
+
+	void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+
+		ImGui::Text("Hello World");
+		ImGui::ColorEdit4("",new float[4]);
+
+		ImGui::End();
 	}
 
 	void OnEvent(Azer::Event& event) override

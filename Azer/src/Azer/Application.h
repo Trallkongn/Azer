@@ -30,7 +30,7 @@ namespace Azer {
 	private:
 		bool onWindowClosed(WindowCloseEvent& e);	
 		std::unique_ptr<Window> m_Window;
-		ImGuiLayer* m_ImGuiLayer; // AzerÄÚ²¿ImGui
+		ImGuiLayer* m_ImGuiLayer; // Azer's ImGui
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:
