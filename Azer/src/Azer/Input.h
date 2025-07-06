@@ -4,6 +4,7 @@
 #include <utility>
 
 namespace Azer {
+
 	class AZER_API Input
 	{
 	public:

@@ -1,8 +1,8 @@
 #pragma once
 
+#include "GLFW/glfw3.h"
 #include "Azer/Window.h"
-#include <GLFW/glfw3.h>
-
+#include "Azer/Renderer/GraphicsContext.h"
 
 namespace Azer {
 	class WindowsWindow : public Window
@@ -28,6 +28,7 @@ namespace Azer {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
