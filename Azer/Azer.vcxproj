@@ -149,6 +149,7 @@
     <ClInclude Include="src\Azer.h" />
     <ClInclude Include="src\Azer\Application.h" />
     <ClInclude Include="src\Azer\Core.h" />
+    <ClInclude Include="src\Azer\Core\TimeStep.h" />
     <ClInclude Include="src\Azer\EntryPoint.h" />
     <ClInclude Include="src\Azer\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Azer\Events\Event.h" />

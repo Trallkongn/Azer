@@ -1398,6 +1398,7 @@
     <ClInclude Include="src\Azer\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Azer\Renderer\OrthoGraphicCamera.h" />
+    <ClInclude Include="src\Azer\Core\TimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Application.cpp">
