@@ -16,6 +16,7 @@ IncludeDir["GLFW"] = "Azer/vendor/GLFW/include"
 IncludeDir["Glad"] = "Azer/vendor/Glad/include"
 IncludeDir["ImGui"] = "Azer/vendor/imgui"
 IncludeDir["glm"] = "Azer/vendor/glm"
+IncludeDir["stb_image"] = "Azer/vendor/stb_image"
 
 include "Azer/vendor/GLFW"
 include "Azer/vendor/Glad"
@@ -42,6 +43,8 @@ project "Azer"
     "%{prj.name}/vendor/glm/glm/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.h",
     "%{prj.name}/vendor/glm/glm/**.inl",
+    "%{prj.name}/vendor/stb_image/**.h",
+    "%{prj.name}/vendor/stb_image/**.cpp",
   }
 
   defines
@@ -57,6 +60,7 @@ project "Azer"
     "%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
     "%{IncludeDir.glm}",
+    "%{IncludeDir.stb_image}"
   }
 
   links

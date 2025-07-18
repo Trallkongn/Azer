@@ -45,7 +45,7 @@ namespace Azer {
 		glBindVertexArray(0);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+	void OpenGLVertexArray::AddVertexBuffer(Azer::Ref<VertexBuffer> vertexBuffer)
 	{
 		AZ_CORE_ASSERT(vertexBuffer->GetLayout().GetElements().size(), "Please set vertex layout first!");
 
@@ -73,7 +73,7 @@ namespace Azer {
 		m_VertexBuffers.push_back(vertexBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+	void OpenGLVertexArray::SetIndexBuffer(Azer::Ref<IndexBuffer> indexBuffer)
 	{
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();

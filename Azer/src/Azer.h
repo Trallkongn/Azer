@@ -20,6 +20,7 @@
 
 #include "Azer/Renderer/Buffer.h"
 #include "Azer/Renderer/Shader.h"
+#include "Azer/Renderer/Texture.h"
 #include "Azer/Renderer/VertexArray.h"
 
 #include "Azer/Renderer/OrthoGraphicCamera.h"

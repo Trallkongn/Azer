@@ -1,21 +1,18 @@
 #pragma once
 
 #include <string>
-#include "glm/glm.hpp"
 
 namespace Azer {
 
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSrc, std::string& fragmentSrc);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void Bind() const;
-		void UnBind() const;
+		virtual void Bind() const = 0;
+		virtual void UnBind() const = 0;
 
-		void SetUniformMat4(const glm::mat4& matrix, const std::string& name) const;
-	private:
-		unsigned int m_RendererID;
+		static Shader* Create(const std::string& filepath);
+		static Shader* Create(const std::string& vertexSrc, std::string& fragmentSrc);
 	};
 }

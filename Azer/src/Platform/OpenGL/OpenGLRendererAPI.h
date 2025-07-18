@@ -7,11 +7,13 @@ namespace Azer {
 	{
 	public:
 		// Í¨¹ý RendererAPI ¼Ì³Ð
+		void Init() override;
+
 		void SetClearColor(const glm::vec4& color) override;
 
 		void Clear() override;
 
-		void DrawIndexed(const std::shared_ptr<VertexArray> vertexArray) override;
+		void DrawIndexed(const Azer::Ref<VertexArray> vertexArray) override;
 
 	};
 }
