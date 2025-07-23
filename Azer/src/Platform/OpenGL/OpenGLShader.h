@@ -12,11 +12,13 @@ namespace Azer {
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexSrc, std::string& fragmentSrc);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, std::string& fragmentSrc);
 		~OpenGLShader();
 
 		void Bind() const override;
 		void UnBind() const override;
+
+		inline const std::string& GetName() const override { return m_Name; }
 
 		void SetUniformInt(int value, const std::string& name) const;
 		void SetUniformInt2(const glm::vec2& values, const std::string& name) const;
@@ -37,5 +39,6 @@ namespace Azer {
 		void Compile(std::unordered_map<GLenum, std::string>& shaderSources);
 	private:
 		uint32_t m_RendererID;
+		std::string m_Name;
 	};
 }

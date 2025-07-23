@@ -1,10 +1,10 @@
 #include "azpch.h"
 #include "Application.h"
-#include "Azer/Log.h"
+#include "Azer/Core/Log.h"
 
-#include "Azer/Input.h"
-#include "Azer/KeyCodes.h"
-#include "Renderer/Renderer.h"
+#include "Azer/Core/Input.h"
+#include "Azer/Core/KeyCodes.h"
+#include "Azer/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 
@@ -41,7 +41,11 @@ namespace Azer {
 			TimeStep timeStep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
-			for (Layer* layer : m_LayerStack) layer->OnUpdate(timeStep);
+			if (!m_Minimized)
+			{
+				for (Layer* layer : m_LayerStack) 
+					layer->OnUpdate(timeStep);
+			}
 
 			// ImGui Layer
 			m_ImGuiLayer->Begin();
@@ -56,6 +60,7 @@ namespace Azer {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClosed));
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::onWindowResize));
 
 		AZ_CORE_TRACE("{0}",e.ToString());
 
@@ -83,5 +88,17 @@ namespace Azer {
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::onWindowResize(WindowResizeEvent& e)
+	{
+		if (e.GetWidth() == 0 || e.GetHeight() == 0)
+		{
+			m_Minimized = true;
+			return false;
+		}
+		m_Minimized = false;
+		Renderer::OnWindowResize(e.GetWidth(), e.GetHeight());
+		return false;
 	}
 }

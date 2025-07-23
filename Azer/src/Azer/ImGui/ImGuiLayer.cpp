@@ -2,9 +2,9 @@
 #include "ImGuiLayer.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "Azer/Application.h"
+#include "Azer/Core/Application.h"
 
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>

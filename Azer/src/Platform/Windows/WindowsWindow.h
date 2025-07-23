@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GLFW/glfw3.h"
-#include "Azer/Window.h"
+#include "Azer/Core/Window.h"
 #include "Azer/Renderer/GraphicsContext.h"
 
 namespace Azer {

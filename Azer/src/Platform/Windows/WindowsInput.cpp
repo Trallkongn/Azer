@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include "GLFW/glfw3.h"
-#include "Azer/Application.h"
+#include "Azer/Core/Application.h"
 
 Azer::Input* Azer::Input::s_Instance = new WindowsInput();
 

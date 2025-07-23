@@ -3,7 +3,7 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "Azer/LayerStack.h"
+#include "Azer/Core/LayerStack.h"
 #include "Azer/Events/Event.h"
 #include "Azer/Events/ApplicationEvent.h"
 
@@ -30,10 +30,12 @@ namespace Azer {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool onWindowClosed(WindowCloseEvent& e);
+		bool onWindowResize(WindowResizeEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer; // Azer's ImGui
 		bool m_Running = true;
+		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
 	private:

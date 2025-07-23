@@ -147,31 +147,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Azer.h" />
-    <ClInclude Include="src\Azer\Application.h" />
-    <ClInclude Include="src\Azer\Core.h" />
+    <ClInclude Include="src\Azer\Core\Application.h" />
+    <ClInclude Include="src\Azer\Core\Core.h" />
+    <ClInclude Include="src\Azer\Core\EntryPoint.h" />
+    <ClInclude Include="src\Azer\Core\Input.h" />
+    <ClInclude Include="src\Azer\Core\KeyCodes.h" />
+    <ClInclude Include="src\Azer\Core\Layer.h" />
+    <ClInclude Include="src\Azer\Core\LayerStack.h" />
+    <ClInclude Include="src\Azer\Core\Log.h" />
+    <ClInclude Include="src\Azer\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Azer\Core\TimeStep.h" />
-    <ClInclude Include="src\Azer\EntryPoint.h" />
+    <ClInclude Include="src\Azer\Core\Window.h" />
     <ClInclude Include="src\Azer\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Azer\Events\Event.h" />
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
     <ClInclude Include="src\Azer\Events\MouseEvent.h" />
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Azer\Input.h" />
-    <ClInclude Include="src\Azer\KeyCodes.h" />
-    <ClInclude Include="src\Azer\Layer.h" />
-    <ClInclude Include="src\Azer\LayerStack.h" />
-    <ClInclude Include="src\Azer\Log.h" />
-    <ClInclude Include="src\Azer\MouseButtonCodes.h" />
     <ClInclude Include="src\Azer\Renderer\Buffer.h" />
     <ClInclude Include="src\Azer\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Azer\Renderer\OrthoGraphicCamera.h" />
+    <ClInclude Include="src\Azer\Renderer\OrthoGraphicCameraController.h" />
     <ClInclude Include="src\Azer\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Azer\Renderer\Renderer.h" />
     <ClInclude Include="src\Azer\Renderer\RendererAPI.h" />
     <ClInclude Include="src\Azer\Renderer\Shader.h" />
     <ClInclude Include="src\Azer\Renderer\Texture.h" />
     <ClInclude Include="src\Azer\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Azer\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
@@ -612,14 +613,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Azer\Application.cpp" />
+    <ClCompile Include="src\Azer\Core\Application.cpp" />
+    <ClCompile Include="src\Azer\Core\Layer.cpp" />
+    <ClCompile Include="src\Azer\Core\LayerStack.cpp" />
+    <ClCompile Include="src\Azer\Core\Log.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Azer\Layer.cpp" />
-    <ClCompile Include="src\Azer\LayerStack.cpp" />
-    <ClCompile Include="src\Azer\Log.cpp" />
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCamera.cpp" />
+    <ClCompile Include="src\Azer\Renderer\OrthoGraphicCameraController.cpp" />
     <ClCompile Include="src\Azer\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Azer\Renderer\Renderer.cpp" />
     <ClCompile Include="src\Azer\Renderer\RendererAPI.cpp" />

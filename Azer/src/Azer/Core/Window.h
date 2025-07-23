@@ -2,7 +2,7 @@
 
 #include "azpch.h"
 
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 #include "Azer/Events/Event.h"
 
 namespace Azer {
@@ -14,8 +14,8 @@ namespace Azer {
 		unsigned int Height;
 
 		WindowProps(const std::string& title = "Azer Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
+			unsigned int width = 1920,
+			unsigned int height = 1080)
 			: Title(title), Width(width), Height(height)
 		{
 

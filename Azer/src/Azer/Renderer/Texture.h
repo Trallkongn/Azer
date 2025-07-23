@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 
 namespace Azer {
 

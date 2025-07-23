@@ -6,6 +6,15 @@
 #include "Azer/Events/MouseEvent.h"
 #include "../OpenGL/OpenGLContext.h"
 
+#include "Azer/Renderer/Renderer.h"
+
+// 目标宽高比 (例如16:9)
+const float ASPECT_RATIO = 16.0f / 9.0f;
+// 最小窗口尺寸
+const uint32_t MIN_WIDTH = 900;
+const uint32_t MIN_HEIGHT = static_cast<uint32_t>(MIN_WIDTH / ASPECT_RATIO);
+static float WindowArea;
+
 
 namespace Azer {
 
@@ -72,6 +81,8 @@ namespace Azer {
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		
+		WindowArea = props.Width * props.Height;
+
 		// Azer make Windows Context API
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
@@ -80,6 +91,51 @@ namespace Azer {
 		SetVSync(true);
 
 		// Set GLFW callbacks
+		glfwSetFramebufferSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
+		{
+			float newRatio = static_cast<float>(width) / height;
+			float newArea = width * height;
+
+			if (newRatio > ASPECT_RATIO && newArea > WindowArea)
+				height = width / ASPECT_RATIO;
+			else if(newRatio < ASPECT_RATIO && newArea > WindowArea)
+				width = height * ASPECT_RATIO;
+			else if(newRatio < ASPECT_RATIO && newArea < WindowArea)
+				height = height = width / ASPECT_RATIO;
+			else if(newRatio > ASPECT_RATIO && newArea < WindowArea)
+				width = height * ASPECT_RATIO;
+
+			WindowArea = newArea;
+			// 确保窗口不小于最小尺寸
+			width = std::max((uint32_t)width, MIN_WIDTH);
+			height = std::max((uint32_t)height, MIN_HEIGHT);
+
+			// 调整视口以匹配新的窗口尺寸
+			RenderCommand::SetViewport(0, 0, width, height);
+
+			// 如果实际尺寸与请求的尺寸不同，则调整窗口
+			int current_width, current_height;
+			glfwGetWindowSize(window, &current_width, &current_height);
+			if (current_width != width || current_height != height)
+			{
+				// 临时关闭回调以避免循环
+				glfwSetWindowSizeCallback(window, nullptr);
+				glfwSetWindowSize(window, width, height);
+				glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int width, int height)
+					{
+						WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+						data.Width = width;
+						data.Height = height;
+
+						WindowResizeEvent event(width, height);
+						data.EventCallback(event);
+					});
+			}
+
+			// 输出当前窗口尺寸和比例
+			AZ_CORE_TRACE("Window resized to : {0} x {1} (aspect ratio: {2})", width, height, static_cast<float>(width) / height);
+		});
+
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) 
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -88,7 +144,6 @@ namespace Azer {
 
 			WindowResizeEvent event(width, height);
 			data.EventCallback(event);
-
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)

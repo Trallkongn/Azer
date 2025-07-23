@@ -23,9 +23,17 @@ Azer::OpenGLShader::OpenGLShader(const std::string& filepath)
 	std::string source = ReadFile(filepath);
 	auto shaderSources = PreProcess(source);
 	Compile(shaderSources);
+
+	// ExtractName -> assets/Shaders/Texture.glsls
+	auto lastSlash = filepath.find_last_of("/\\");
+	lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+	auto lastDot = filepath.rfind(".");
+	auto count = lastDot == std::string::npos ? filepath.size() - lastSlash : lastDot - lastSlash;
+	m_Name = filepath.substr(lastSlash, count);
 }
 
-Azer::OpenGLShader::OpenGLShader(const std::string& vertexSrc, std::string& fragmentSrc)
+Azer::OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, std::string& fragmentSrc)
+	: m_Name(name)
 {
 	std::unordered_map<GLenum, std::string> shaderSources;
 	shaderSources[GL_VERTEX_SHADER] = vertexSrc;
@@ -42,7 +50,7 @@ Azer::OpenGLShader::~OpenGLShader()
 std::string Azer::OpenGLShader::ReadFile(const std::string& filepath)
 {
 	std::string result;
-	std::ifstream in(filepath, std::ios::in, std::ios::binary);
+	std::ifstream in(filepath, std::ios::in | std::ios::binary);
 	if (in)
 	{
 		in.seekg(0, std::ios::end);
@@ -84,7 +92,9 @@ std::unordered_map<GLenum, std::string> Azer::OpenGLShader::PreProcess(const std
 void Azer::OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shaderSources)
 {
 	GLuint program = glCreateProgram();
-	std::vector<GLuint> glShaderIDs(shaderSources.size());
+	AZ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now!");
+	std::array<GLuint, 2> glShaderIDs;
+	int index = 0;
 	for (auto& kv : shaderSources)
 	{
 		GLenum type = kv.first;
@@ -117,7 +127,7 @@ void Azer::OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shader
 		}
 
 		glAttachShader(program, shader);
-		glShaderIDs.push_back(shader);
+		glShaderIDs[index++] = shader;
 	}
 
 	glLinkProgram(program);
@@ -143,7 +153,10 @@ void Azer::OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shader
 		AZ_CORE_ASSERT(false, "\n Please check errors!");
 		return;
 	}
+
 	m_RendererID = program;
+
+	for (auto& id : glShaderIDs) glDetachShader(program, id);
 }
 
 void Azer::OpenGLShader::Bind() const

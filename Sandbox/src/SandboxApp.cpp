@@ -11,7 +11,7 @@ class ExampleLayer : public Azer::Layer
 {
 public:
 	ExampleLayer()
-		:Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		:Layer("Example"), m_CameraController(1.6f/0.9f, true)
 	{
 		// Square
 		SquareVA.reset(Azer::VertexArray::Create());
@@ -39,57 +39,38 @@ public:
 		SquareIB.reset(Azer::IndexBuffer::Create(SquareIndices, 6));
 		SquareVA->SetIndexBuffer(SquareIB);
 
-		m_TextureShader.reset(Azer::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLib.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Azer::Texture2D::Create("assets/textures/ike.jpg");
 		m_FeiBiTexture = Azer::Texture2D::Create("assets/textures/feibi.jpg");
 		m_PlayerTexture = Azer::Texture2D::Create("assets/textures/player2.png");
 
-		std::dynamic_pointer_cast<Azer::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Azer::OpenGLShader>(m_TextureShader)->SetUniformInt(0, "u_Texture");
+		std::dynamic_pointer_cast<Azer::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Azer::OpenGLShader>(textureShader)->SetUniformInt(0, "u_Texture");
 	}
 
 	void OnUpdate(Azer::TimeStep delta) override
 	{
-		// Camera
-		if (Azer::Input::IsKeyPressed(AZ_KEY_LEFT))
-		{
-			m_CameraPosition.x -= m_CameraSpeed * delta;
-			//m_CameraRotation -= m_CameraRotationSpeed * delta;
-		}
-		else if (Azer::Input::IsKeyPressed(AZ_KEY_RIGHT))
-		{
-			m_CameraPosition.x += m_CameraSpeed * delta;
-			//m_CameraRotation += m_CameraRotationSpeed * delta;
-		}
-		else if (Azer::Input::IsKeyPressed(AZ_KEY_UP))
-		{
-			m_CameraPosition.y += m_CameraSpeed * delta;
-		}
-		else if (Azer::Input::IsKeyPressed(AZ_KEY_DOWN))
-		{
-			m_CameraPosition.y -= m_CameraSpeed * delta;
-		}
+		// Update
+		m_CameraController.OnUpdate(delta);
 		
+		// Render
 		Azer::RenderCommand::SetClearColor({ 0.1f,0.1f,0.1f,1.0f });
 		Azer::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Azer::Renderer::BeginScene(m_Camera);
+		Azer::Renderer::BeginScene(m_CameraController.GetCamera());
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		auto textureShader = m_ShaderLib.Get("Texture");
+
 		m_Texture->Bind();
-		Azer::Renderer::Submit(SquareVA, m_TextureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.3f)));
+		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)));
 		m_PlayerTexture->Bind();
-		Azer::Renderer::Submit(SquareVA, m_TextureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.3f)));
-
+		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)));
 		m_FeiBiTexture->Bind();
-		Azer::Renderer::Submit(SquareVA, m_TextureShader, glm::translate(glm::mat4(1.0f), glm::vec3(1.0f,0.0f,0.0f))*glm::scale(glm::mat4(1.0f), glm::vec3(1.3f)));
+		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(1.0f,0.0f,0.0f)));
 
-		//Azer::Renderer::Submit(m_VertexArray, m_Shader);
 		Azer::Renderer::EndScene();
 	}
 
@@ -104,16 +85,11 @@ public:
 
 	void OnEvent(Azer::Event& event) override
 	{
-		Azer::EventDispatcher dispatcher(event);
-		dispatcher.Dispatch<Azer::KeyPressedEvent>(BIND_EVENT_FN(ExampleLayer::OnKeyPressed));
-	}
-
-	bool OnKeyPressed(Azer::KeyPressedEvent event)
-	{
-		return false;
+		m_CameraController.OnEvent(event);
 	}
 
 private:
+	Azer::ShaderLibrary m_ShaderLib;
 	// Square
 	Azer::Ref<Azer::VertexArray> SquareVA;
 	Azer::Ref<Azer::VertexBuffer> SquareVB;
@@ -122,14 +98,7 @@ private:
 
 	Azer::Ref<Azer::Texture2D> m_Texture, m_PlayerTexture, m_FeiBiTexture;
 
-	Azer::OrthoGraphicCamera m_Camera;
-
-	glm::vec3 m_CameraPosition;
-	float m_CameraSpeed = 2.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 200.0f;
-
+	Azer::OrthoGraphicCameraController m_CameraController;
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
