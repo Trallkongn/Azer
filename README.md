@@ -18,5 +18,7 @@ UI库：ImGui | Qt
 # 目前的进度
 已配备事件系统、轮询系统、层系统、ImGui，正在制作渲染系统...
 
+# Notice
+本项目为学习项目，暂时为 Hazel Engine 的简单实现，如果想体验更好的引擎，请转至 Hazel Engine
 ---
 2025-06-30 Developer's log
