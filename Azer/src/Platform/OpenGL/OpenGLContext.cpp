@@ -26,6 +26,15 @@ void Azer::OpenGLContext::Init()
 	AZ_CORE_INFO("	Version:  {0}", version);
 }
 
+#ifdef AZ_ENABLE_ASSERT
+	int	majorVersion;
+	int minorVersion;
+	glGetIntegerv(GL_MAJOR_VERSION, &majorVersion);
+	glGetIntegerv(GL_MINOR_VERSION, &minorVersion);
+
+	AZ_CORE_ASSERT(majorVersion > 4 || (majorVersion==4 && minorVersion >=5), "Azer requires at least OpenGL version 4.5!");
+#endif
+
 void Azer::OpenGLContext::SwapBuffers()
 {
 	glfwSwapBuffers(m_WindowHandle);

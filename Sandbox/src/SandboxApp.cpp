@@ -41,7 +41,7 @@ public:
 
 		auto textureShader = m_ShaderLib.Load("assets/shaders/Texture.glsl");
 
-		m_Texture = Azer::Texture2D::Create("assets/textures/ike.jpg");
+		m_Texture = Azer::Texture2D::Create("assets/textures/feibi2.jpg");
 		m_FeiBiTexture = Azer::Texture2D::Create("assets/textures/feibi.jpg");
 		m_PlayerTexture = Azer::Texture2D::Create("assets/textures/player2.png");
 
@@ -66,8 +66,8 @@ public:
 
 		m_Texture->Bind();
 		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)));
-		m_PlayerTexture->Bind();
-		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)));
+		/*m_PlayerTexture->Bind();
+		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(-0.5f, 0.0f, 0.0f)));*/
 		m_FeiBiTexture->Bind();
 		Azer::Renderer::Submit(SquareVA, textureShader, glm::translate(glm::mat4(1.0f), glm::vec3(1.0f,0.0f,0.0f)));
 
