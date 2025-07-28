@@ -169,61 +169,81 @@ void Azer::OpenGLShader::UnBind() const
 	glUseProgram(0);
 }
 
-void Azer::OpenGLShader::SetUniformInt(int value, const std::string& name) const
+void Azer::OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
+{
+	UploadUniformFloat3(value, name);
+}
+
+void Azer::OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
+{
+	UploadUniformFloat4(value, name);
+}
+
+void Azer::OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
+{
+	UploadUniformMat4(value, name);
+}
+
+void Azer::OpenGLShader::SetInt(const std::string& name, int value)
+{
+	UploadUniformInt(value, name);
+}
+
+void Azer::OpenGLShader::UploadUniformInt(int value, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform1i(location, value);
 }
 
-void Azer::OpenGLShader::SetUniformInt2(const glm::vec2& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformInt2(const glm::vec2& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform2i(location, values.x, values.y);
 }
 
-void Azer::OpenGLShader::SetUniformInt3(const glm::vec3& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformInt3(const glm::vec3& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform3i(location, values.x, values.y, values.z);
 }
 
-void Azer::OpenGLShader::SetUniformInt4(const glm::vec4& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformInt4(const glm::vec4& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform4i(location, values.x, values.y, values.z, values.w);
 }
 
-void Azer::OpenGLShader::SetUniformFloat(float value, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformFloat(float value, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform1f(location, value);
 }
 
-void Azer::OpenGLShader::SetUniformFloat2(const glm::vec2& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformFloat2(const glm::vec2& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform2f(location, values.x, values.y);
 }
 
-void Azer::OpenGLShader::SetUniformFloat3(const glm::vec3& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformFloat3(const glm::vec3& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform3f(location, values.x, values.y, values.z);
 }
 
-void Azer::OpenGLShader::SetUniformFloat4(const glm::vec4& values, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformFloat4(const glm::vec4& values, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniform4f(location, values.x, values.y, values.z, values.w);
 }
 
-void Azer::OpenGLShader::SetUniformMat3(const glm::mat3& matrix, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformMat3(const glm::mat3& matrix, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }
 
-void Azer::OpenGLShader::SetUniformMat4(const glm::mat4& matrix, const std::string& name) const
+void Azer::OpenGLShader::UploadUniformMat4(const glm::mat4& matrix, const std::string& name) const
 {
 	GLint location = glGetUniformLocation(m_RendererID, name.c_str());
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));

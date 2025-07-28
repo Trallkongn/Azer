@@ -16,6 +16,7 @@
 
 // -- Renderer -------------------------------
 #include "Azer/Renderer/Renderer.h"
+#include "Azer/Renderer/Renderer2D.h"
 #include "Azer/Renderer/RenderCommand.h"
 
 #include "Azer/Renderer/Buffer.h"
@@ -25,8 +26,3 @@
 
 #include "Azer/Renderer/OrthoGraphicCamera.h"
 #include "Azer/Renderer/OrthoGraphicCameraController.h"
-
-
-// ---Entry Point----------------------------
-
-#include "Azer/Core/EntryPoint.h"

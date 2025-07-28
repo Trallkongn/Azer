@@ -20,18 +20,23 @@ namespace Azer {
 
 		inline const std::string& GetName() const override { return m_Name; }
 
-		void SetUniformInt(int value, const std::string& name) const;
-		void SetUniformInt2(const glm::vec2& values, const std::string& name) const;
-		void SetUniformInt3(const glm::vec3& values, const std::string& name) const;
-		void SetUniformInt4(const glm::vec4& values, const std::string& name) const;
+		void SetFloat3(const std::string& name, const glm::vec3& value) override;
+		void SetFloat4(const std::string& name, const glm::vec4& value) override;
+		void SetMat4(const std::string& name, const glm::mat4& value) override;
+		void SetInt(const std::string& name, int value) override;
 
-		void SetUniformFloat(float value, const std::string& name) const;
-		void SetUniformFloat2(const glm::vec2& values, const std::string& name) const;
-		void SetUniformFloat3(const glm::vec3& values, const std::string& name) const;
-		void SetUniformFloat4(const glm::vec4& values, const std::string& name) const;
-
-		void SetUniformMat3(const glm::mat3& matrix, const std::string& name) const;
-		void SetUniformMat4(const glm::mat4& matrix, const std::string& name) const;
+		void UploadUniformInt(int value, const std::string& name) const;
+		void UploadUniformInt2(const glm::vec2& values, const std::string& name) const;
+		void UploadUniformInt3(const glm::vec3& values, const std::string& name) const;
+		void UploadUniformInt4(const glm::vec4& values, const std::string& name) const;
+			 
+		void UploadUniformFloat(float value, const std::string& name) const;
+		void UploadUniformFloat2(const glm::vec2& values, const std::string& name) const;
+		void UploadUniformFloat3(const glm::vec3& values, const std::string& name) const;
+		void UploadUniformFloat4(const glm::vec4& values, const std::string& name) const;
+			 
+		void UploadUniformMat3(const glm::mat3& matrix, const std::string& name) const;
+		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name) const;
 
 	private:
 		std::string ReadFile(const std::string& filepath);

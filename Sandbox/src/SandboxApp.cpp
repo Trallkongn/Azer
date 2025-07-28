@@ -1,6 +1,7 @@
 #include <Azer.h>
+#include <Azer/Core/EntryPoint.h>
 
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "SandBox2D.h"
 
 #include "imgui/imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
@@ -14,7 +15,7 @@ public:
 		:Layer("Example"), m_CameraController(1.6f/0.9f, true)
 	{
 		// Square
-		SquareVA.reset(Azer::VertexArray::Create());
+		SquareVA = Azer::VertexArray::Create();
 
 		float SquareVertices[4 * 5] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f, //0
@@ -23,7 +24,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f  //3
 		};
 
-		SquareVB.reset(Azer::VertexBuffer::Create(SquareVertices, sizeof(SquareVertices)));
+		SquareVB = Azer::VertexBuffer::Create(SquareVertices, sizeof(SquareVertices));
 
 		Azer::BufferLayout SquareLayout = {
 			{Azer::ShaderDataType::Float3, "a_Position"},
@@ -36,7 +37,7 @@ public:
 		uint32_t SquareIndices[6] = {
 			0, 1, 2, 2, 3, 0
 		};
-		SquareIB.reset(Azer::IndexBuffer::Create(SquareIndices, 6));
+		SquareIB = Azer::IndexBuffer::Create(SquareIndices, 6);
 		SquareVA->SetIndexBuffer(SquareIB);
 
 		auto textureShader = m_ShaderLib.Load("assets/shaders/Texture.glsl");
@@ -44,9 +45,6 @@ public:
 		m_Texture = Azer::Texture2D::Create("assets/textures/feibi2.jpg");
 		m_FeiBiTexture = Azer::Texture2D::Create("assets/textures/feibi.jpg");
 		m_PlayerTexture = Azer::Texture2D::Create("assets/textures/player2.png");
-
-		std::dynamic_pointer_cast<Azer::OpenGLShader>(textureShader)->Bind();
-		std::dynamic_pointer_cast<Azer::OpenGLShader>(textureShader)->SetUniformInt(0, "u_Texture");
 	}
 
 	void OnUpdate(Azer::TimeStep delta) override
@@ -107,7 +105,8 @@ class Sandbox : public Azer::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new SandBox2D());
 	}
 
 	~Sandbox()
