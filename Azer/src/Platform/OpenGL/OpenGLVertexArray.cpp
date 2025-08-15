@@ -27,21 +27,29 @@ namespace Azer {
 
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		glCreateVertexArrays(1, &m_RendererID);
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const
 	{
+		AZ_PROFILE_FUNCTION();
+
 		glBindVertexArray(m_RendererID);
 	}
 
 	void OpenGLVertexArray::UnBind() const
 	{
+		AZ_PROFILE_FUNCTION();
+
 		glBindVertexArray(0);
 	}
 

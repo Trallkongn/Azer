@@ -20,6 +20,8 @@ namespace Azer {
 
 Azer::OpenGLShader::OpenGLShader(const std::string& filepath)
 {
+	AZ_PROFILE_FUNCTION();
+
 	std::string source = ReadFile(filepath);
 	auto shaderSources = PreProcess(source);
 	Compile(shaderSources);
@@ -35,6 +37,8 @@ Azer::OpenGLShader::OpenGLShader(const std::string& filepath)
 Azer::OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, std::string& fragmentSrc)
 	: m_Name(name)
 {
+	AZ_PROFILE_FUNCTION();
+
 	std::unordered_map<GLenum, std::string> shaderSources;
 	shaderSources[GL_VERTEX_SHADER] = vertexSrc;
 	shaderSources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -44,11 +48,15 @@ Azer::OpenGLShader::OpenGLShader(const std::string& name, const std::string& ver
 
 Azer::OpenGLShader::~OpenGLShader()
 {
+	AZ_PROFILE_FUNCTION();
+
 	glDeleteProgram(m_RendererID);
 }
 
 std::string Azer::OpenGLShader::ReadFile(const std::string& filepath)
 {
+	AZ_PROFILE_FUNCTION();
+
 	std::string result;
 	std::ifstream in(filepath, std::ios::in | std::ios::binary);
 	if (in)
@@ -68,6 +76,8 @@ std::string Azer::OpenGLShader::ReadFile(const std::string& filepath)
 
 std::unordered_map<GLenum, std::string> Azer::OpenGLShader::PreProcess(const std::string& source)
 {
+	AZ_PROFILE_FUNCTION();
+
 	std::unordered_map<GLenum, std::string> shaderSources;
 
 	const char* typeToken = "#type";
@@ -91,6 +101,8 @@ std::unordered_map<GLenum, std::string> Azer::OpenGLShader::PreProcess(const std
 
 void Azer::OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shaderSources)
 {
+	AZ_PROFILE_FUNCTION();
+
 	GLuint program = glCreateProgram();
 	AZ_CORE_ASSERT(shaderSources.size() <= 2, "We only support 2 shaders for now!");
 	std::array<GLuint, 2> glShaderIDs;
@@ -161,31 +173,50 @@ void Azer::OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shader
 
 void Azer::OpenGLShader::Bind() const
 {
+	AZ_PROFILE_FUNCTION();
+
 	glUseProgram(m_RendererID);
 }
 
 void Azer::OpenGLShader::UnBind() const
 {
+	AZ_PROFILE_FUNCTION();
+
 	glUseProgram(0);
+}
+
+void Azer::OpenGLShader::SetFloat(const std::string& name, float value)
+{
+	AZ_PROFILE_FUNCTION();
+
+	UploadUniformFloat(value, name);
 }
 
 void Azer::OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 {
+	AZ_PROFILE_FUNCTION();
+
 	UploadUniformFloat3(value, name);
 }
 
 void Azer::OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 {
+	AZ_PROFILE_FUNCTION();
+
 	UploadUniformFloat4(value, name);
 }
 
 void Azer::OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 {
+	AZ_PROFILE_FUNCTION();
+
 	UploadUniformMat4(value, name);
 }
 
 void Azer::OpenGLShader::SetInt(const std::string& name, int value)
 {
+	AZ_PROFILE_FUNCTION();
+
 	UploadUniformInt(value, name);
 }
 

@@ -9,6 +9,8 @@ namespace Azer {
 
 	void Renderer::Init()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
@@ -35,5 +37,10 @@ namespace Azer {
 		shader->SetMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 }

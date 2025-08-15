@@ -1,7 +1,7 @@
 #include "azpch.h"
 #include "OpenGLContext.h"
 
-#include "GLFW/glfw3.h"
+#include <GLFW/glfw3.h>
 #include "glad/glad.h"
 
 Azer::OpenGLContext::OpenGLContext(GLFWwindow* windowHandle)
@@ -37,5 +37,7 @@ void Azer::OpenGLContext::Init()
 
 void Azer::OpenGLContext::SwapBuffers()
 {
+	AZ_PROFILE_FUNCTION();
+
 	glfwSwapBuffers(m_WindowHandle);
 }

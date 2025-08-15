@@ -22,6 +22,8 @@ Azer::ImGuiLayer::~ImGuiLayer()
 
 void Azer::ImGuiLayer::OnAttach()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -55,6 +57,8 @@ void Azer::ImGuiLayer::OnAttach()
 
 void Azer::ImGuiLayer::OnDetach()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
@@ -63,12 +67,16 @@ void Azer::ImGuiLayer::OnDetach()
 
 void Azer::ImGuiLayer::OnImGuiRender()
 {
+    AZ_PROFILE_FUNCTION();
+
     /*static bool show = true;
     ImGui::ShowDemoWindow(&show);*/
 }
 
 void Azer::ImGuiLayer::Begin()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -77,6 +85,8 @@ void Azer::ImGuiLayer::Begin()
 
 void Azer::ImGuiLayer::End()
 {
+    AZ_PROFILE_FUNCTION();
+
     ImGuiIO& io = ImGui::GetIO();
     Application& app = Application::Get();
     io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());

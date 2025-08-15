@@ -16,6 +16,8 @@ namespace Azer {
 
 		static void Submit(const Azer::Ref<VertexArray>& vertexArray, const Azer::Ref<Shader> shader, const glm::mat4& transform = glm::mat4(1.0f));
 
+		static void Shutdown();
+
 		static inline RendererAPI::API GetAPI() { return RendererAPI::GetAPI(); }
 	private:
 		struct SceneData

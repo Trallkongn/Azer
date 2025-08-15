@@ -156,9 +156,9 @@
     <ClInclude Include="src\Azer\Core\LayerStack.h" />
     <ClInclude Include="src\Azer\Core\Log.h" />
     <ClInclude Include="src\Azer\Core\MouseButtonCodes.h" />
-    <ClInclude Include="src\Azer\Core\Timer.h" />
     <ClInclude Include="src\Azer\Core\TimeStep.h" />
     <ClInclude Include="src\Azer\Core\Window.h" />
+    <ClInclude Include="src\Azer\Debug\Instrumentor.h" />
     <ClInclude Include="src\Azer\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Azer\Events\Event.h" />
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
@@ -622,6 +622,7 @@
     <ClCompile Include="src\Azer\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCamera.cpp" />
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCameraController.cpp" />
     <ClCompile Include="src\Azer\Renderer\RenderCommand.cpp" />

@@ -5,6 +5,7 @@ D:\Datas\GameEngine\Azer\Azer\src\Azer\Core\Log.cpp;D:\Datas\GameEngine\Azer\bin
 D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiBuild.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiBuild.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiLayer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiLayer.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\Buffer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Buffer.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\GraphicsContext.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\GraphicsContext.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\OrthoGraphicCamera.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OrthoGraphicCamera.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\OrthoGraphicCameraController.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OrthoGraphicCameraController.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\RenderCommand.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\RenderCommand.obj

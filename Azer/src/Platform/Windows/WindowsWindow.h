@@ -5,6 +5,7 @@
 #include "Azer/Renderer/GraphicsContext.h"
 
 namespace Azer {
+
 	class WindowsWindow : public Window
 	{
 	public:
@@ -28,7 +29,7 @@ namespace Azer {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
-		GraphicsContext* m_Context;
+		Scope<GraphicsContext> m_Context;
 
 		struct WindowData
 		{

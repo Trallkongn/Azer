@@ -7,6 +7,7 @@
 #include <string>
 
 namespace Azer {
+
 	class AZER_API Layer
 	{
 	public:
@@ -16,6 +17,7 @@ namespace Azer {
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
 		virtual void OnUpdate(TimeStep delta) {}
+		virtual void OnRender() {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

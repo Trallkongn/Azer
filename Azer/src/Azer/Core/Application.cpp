@@ -16,6 +16,8 @@ namespace Azer {
 
 	Application::Application()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		AZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
@@ -30,27 +32,41 @@ namespace Azer {
 
 	Application::~Application()
 	{
+		AZ_PROFILE_FUNCTION();
 
+		Renderer::Shutdown();
 	}
 
 	void Application::Run()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			AZ_PROFILE_SCOPE("Run loop");
 			float time = (float)glfwGetTime();
 			TimeStep timeStep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
 			{
-				for (Layer* layer : m_LayerStack) 
-					layer->OnUpdate(timeStep);
-			}
 
-			// ImGui Layer
-			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack) layer->OnImGuiRender();
-			m_ImGuiLayer->End();
+				{
+					AZ_PROFILE_SCOPE("Layer OnUpdate");
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timeStep);
+				}
+				
+
+				{
+					AZ_PROFILE_SCOPE("ImGui Layer OnUpdate");
+					// ImGui Layer
+					m_ImGuiLayer->Begin();
+					for (Layer* layer : m_LayerStack) layer->OnImGuiRender();
+					m_ImGuiLayer->End();
+				}
+				
+			}
 
 			m_Window->OnUpdate();
 		}
@@ -58,6 +74,8 @@ namespace Azer {
 
 	void Application::OnEvent(Event& e)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClosed));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::onWindowResize));
@@ -74,12 +92,16 @@ namespace Azer {
 
 	void Application::PushLayer(Layer* layer)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* overlay)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(overlay);
 		overlay->OnAttach();
 	}
@@ -92,6 +114,8 @@ namespace Azer {
 
 	bool Application::onWindowResize(WindowResizeEvent& e)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;

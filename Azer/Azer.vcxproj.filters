@@ -1453,7 +1453,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Azer\Core\Timer.h" />
+    <ClInclude Include="src\Azer\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Core\Application.cpp">
@@ -1532,5 +1532,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
   </ItemGroup>
 </Project>

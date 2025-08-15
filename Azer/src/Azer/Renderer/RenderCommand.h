@@ -8,6 +8,8 @@ namespace Azer
 	public:
 		inline static void Init()
 		{
+			AZ_PROFILE_FUNCTION();
+
 			s_RendererAPI->Init();
 		}
 
