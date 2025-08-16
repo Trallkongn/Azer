@@ -30,6 +30,10 @@ namespace Azer
 		{
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
+		inline static void DrawLine(const Azer::Ref<VertexArray>& vertexArray)
+		{
+			s_RendererAPI->DrawLine(vertexArray);
+		}
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

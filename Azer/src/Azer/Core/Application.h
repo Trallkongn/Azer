@@ -11,6 +11,8 @@
 
 #include "Azer/ImGui/ImGuiLayer.h"
 
+#include <glm/glm.hpp>
+
 namespace Azer {
 
 	class AZER_API Application
@@ -38,6 +40,8 @@ namespace Azer {
 		bool m_Minimized = false;
 		LayerStack m_LayerStack;
 		float m_LastFrameTime = 0.0f;
+
+		glm::vec4 m_ClearColor = { 0.2f, 0.2f, 0.2f, 1.0f };
 	private:
 		static Application* s_Instance;
 

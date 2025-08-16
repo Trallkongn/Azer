@@ -164,7 +164,11 @@
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
     <ClInclude Include="src\Azer\Events\MouseEvent.h" />
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h" />
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.h" />
+    <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h" />
     <ClInclude Include="src\Azer\Renderer\Buffer.h" />
+    <ClInclude Include="src\Azer\Renderer\GraphicCamera.h" />
     <ClInclude Include="src\Azer\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Azer\Renderer\OrthoGraphicCamera.h" />
     <ClInclude Include="src\Azer\Renderer\OrthoGraphicCameraController.h" />
@@ -621,6 +625,9 @@
     <ClCompile Include="src\Azer\Core\Log.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp" />
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCamera.cpp" />

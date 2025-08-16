@@ -16,6 +16,8 @@ namespace Azer {
 		void Clear() override;
 
 		void DrawIndexed(const Azer::Ref<VertexArray> vertexArray) override;
+		void DrawLine(const Azer::Ref<VertexArray> vertexArray) override;
+
 
 	};
 }

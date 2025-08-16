@@ -1,12 +1,14 @@
 #include <Azer.h>
 #include <Azer/Core/EntryPoint.h>
 
+#include "NewLayer.h"
+
 class Sandbox : public Azer::Application
 {
 public:
 	Sandbox()
 	{
-
+		PushLayer(new NewLayer("NewLayer"));
 	}
 
 	~Sandbox()

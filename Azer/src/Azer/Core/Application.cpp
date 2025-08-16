@@ -8,6 +8,9 @@
 
 #include <GLFW/glfw3.h>
 
+#include <imgui.h>
+#include <glm/gtc/type_ptr.hpp>
+
 namespace Azer {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -43,10 +46,15 @@ namespace Azer {
 
 		while (m_Running)
 		{
+
 			AZ_PROFILE_SCOPE("Run loop");
 			float time = (float)glfwGetTime();
 			TimeStep timeStep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
+
+			RenderCommand::SetClearColor(m_ClearColor);
+			RenderCommand::Clear();
+
 
 			if (!m_Minimized)
 			{
@@ -63,6 +71,9 @@ namespace Azer {
 					// ImGui Layer
 					m_ImGuiLayer->Begin();
 					for (Layer* layer : m_LayerStack) layer->OnImGuiRender();
+					ImGui::Begin("Core Set");
+					ImGui::ColorEdit4("Clear Color", glm::value_ptr(m_ClearColor));
+					ImGui::End();
 					m_ImGuiLayer->End();
 				}
 				
@@ -80,7 +91,7 @@ namespace Azer {
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClosed));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::onWindowResize));
 
-		AZ_CORE_TRACE("{0}",e.ToString());
+		//AZ_CORE_TRACE("{0}",e.ToString());
 
 		// from out to inner
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )

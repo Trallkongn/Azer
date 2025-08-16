@@ -1454,6 +1454,10 @@
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Azer\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h" />
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h" />
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.h" />
+    <ClInclude Include="src\Azer\Renderer\GraphicCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Core\Application.cpp">
@@ -1533,5 +1537,8 @@
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp" />
   </ItemGroup>
 </Project>
