@@ -15,7 +15,7 @@
 
 #include "Azer/Core/Log.h"
 
-#include "Azer/Debug/Instrumentor.h"
+#include "Azer/DebugTools/Instrumentor.h"
 
 #ifdef AZ_PLATFORM_WINDOWS
 	#include <Windows.h>
