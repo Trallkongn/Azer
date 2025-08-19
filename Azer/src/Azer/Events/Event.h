@@ -2,7 +2,7 @@
 
 #include "azpch.h"
 
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 
 namespace Azer {
 

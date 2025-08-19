@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 #include "Azer/Events/Event.h"
 #include "Azer/Core/TimeStep.h"
 
