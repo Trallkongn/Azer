@@ -20,6 +20,9 @@ namespace Azer {
 
 		virtual void DrawIndexed(const Azer::Ref<VertexArray> vertexArray) = 0;
 		virtual void DrawLine(const Azer::Ref<VertexArray> vertexArray) = 0;
+		virtual void DrawArray(const Azer::Ref<VertexArray> vertexArray, uint32_t count) = 0;
+
+		virtual void FramebufferTexture2D(uint32_t index, uint32_t rendererID, int miplevels = 0) = 0;
 
 		inline static API GetAPI() { return s_API; }
 	private:

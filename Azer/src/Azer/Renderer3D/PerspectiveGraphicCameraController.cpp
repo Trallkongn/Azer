@@ -17,6 +17,7 @@ namespace Azer {
 		m_Rotation(rotation),
 		m_Camera(m_Fov, m_AspectRatio, m_NearClip, m_FarClip)
 	{
+		std::cout << m_Fov << ' ' << m_AspectRatio << ' ' << m_NearClip << ' ' << m_FarClip << std::endl;
 		// ÇòÃæ×ø±ê ¡ú µÑ¿¨¶û×ø±ê
 		float cosPitch = glm::cos(glm::radians(m_Pitch));
 		glm::vec3 eye{
@@ -84,9 +85,7 @@ namespace Azer {
 
 	bool PerspectiveGraphicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
-		m_Distance -= e.GetYOffset() * 3;
-		m_Distance = std::min(m_FarClip, m_Distance);
-		m_Distance = std::max(m_NearClip, m_Distance);
+		m_Distance -= e.GetYOffset() * 0.1;
 
 		AZ_CORE_INFO("{}", e.ToString());
 		AZ_CORE_INFO("distance : {}", m_Distance);

@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "Renderer2D.h"
 #include <Azer/Renderer3D/Renderer3D.h>
+#include <Azer/Renderer3D/RendererPBR.h>
 
 namespace Azer {
 
@@ -13,8 +14,10 @@ namespace Azer {
 		AZ_PROFILE_FUNCTION();
 
 		RenderCommand::Init();
+		RendererPBR::Init();
 		Renderer2D::Init();
 		Renderer3D::Init();
+		
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

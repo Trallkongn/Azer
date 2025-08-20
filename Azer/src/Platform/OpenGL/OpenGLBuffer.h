@@ -36,4 +36,40 @@ namespace Azer {
 		uint32_t m_RendererID;
 		uint32_t m_Count;
 	};
+
+	class OpenGLUniformBuffer : public UniformBuffer
+	{
+	public:
+		OpenGLUniformBuffer();
+		~OpenGLUniformBuffer();
+
+		// 通过 UniformBuffer 继承
+		void Bind() const override;
+
+		void UnBind() const override;
+
+	private:
+		uint32_t m_RendererID;
+	};
+
+	class OpenGLFrameBufferRenderBuffer : public FrameBufferRenderBuffer
+	{
+	public:
+		OpenGLFrameBufferRenderBuffer(uint32_t width = 512, uint32_t height = 512);
+		~OpenGLFrameBufferRenderBuffer();
+
+		// 通过 FrameBufferRenderBuffer 继承
+		void Bind() const override;
+
+		void UnBind() const override;
+
+		void AttachColorTexture(uint32_t textureID, GLenum target = GL_TEXTURE_2D, int level = 0) override;
+
+	private:
+		uint32_t m_FrameBuffer;
+		uint32_t m_RenderBuffer;
+
+		uint32_t m_Width;
+		uint32_t m_Height;
+	};
 }

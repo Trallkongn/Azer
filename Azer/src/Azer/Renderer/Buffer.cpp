@@ -33,4 +33,32 @@ namespace Azer {
 		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
 		return nullptr;
 	}
+
+	Ref<UniformBuffer> UniformBuffer::Create()
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLUniformBuffer>();
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
+
+	Ref<FrameBufferRenderBuffer> FrameBufferRenderBuffer::Create(uint32_t width, uint32_t height)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLFrameBufferRenderBuffer>(width,height);
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
 }

@@ -10,6 +10,9 @@
     <Filter Include="src\Azer\Core">
       <UniqueIdentifier>{2645EEC8-9205-6AFF-5B40-B37CC7BFAEDB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Azer\Debug">
+      <UniqueIdentifier>{0445C3E6-F012-B7EC-D9A6-2713C5139351}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Azer\Events">
       <UniqueIdentifier>{3238B6C2-9EC3-2387-A7D4-A67B13DF7F87}</UniqueIdentifier>
     </Filter>
@@ -19,11 +22,20 @@
     <Filter Include="src\Azer\Renderer">
       <UniqueIdentifier>{741B2040-E031-1ED6-29A9-A9F795FEEE5D}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Azer\Renderer3D">
+      <UniqueIdentifier>{4BCF94C8-B730-72D6-409E-B888ACFEA895}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\OpenGL">
       <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL\IBL">
+      <UniqueIdentifier>{DBBB207D-47F3-6814-50FD-CC37BCB38F0D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL\Material">
+      <UniqueIdentifier>{735EAE4C-5F19-9EF8-08D1-1643F46AE888}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -54,6 +66,9 @@
     </Filter>
     <Filter Include="vendor\stb_image">
       <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="vendor\tiny_gltf">
+      <UniqueIdentifier>{F2D50B7F-DECE-2AD1-0701-1056F3580ADD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +108,9 @@
     <ClInclude Include="src\Azer\Core\Window.h">
       <Filter>src\Azer\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\DebugTools\Instrumentor.h">
+      <Filter>src\Azer\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Events\ApplicationEvent.h">
       <Filter>src\Azer\Events</Filter>
     </ClInclude>
@@ -111,6 +129,9 @@
     <ClInclude Include="src\Azer\Renderer\Buffer.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Renderer\GraphicCamera.h">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Renderer\GraphicsContext.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
@@ -126,6 +147,9 @@
     <ClInclude Include="src\Azer\Renderer\Renderer.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Renderer\Renderer2D.h">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Renderer\RendererAPI.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
@@ -137,6 +161,36 @@
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\VertexArray.h">
       <Filter>src\Azer\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.h">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\RendererPBR.h">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\BRDFLUT.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\EnvCubemap.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\IrradianceMap.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\PBR.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\PrefilterMap.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\Material\OpenGLMaterial.h">
+      <Filter>src\Platform\OpenGL\Material</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1452,12 +1506,15 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Azer\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\Azer\Debug\Instrumentor.h" />
-    <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h" />
-    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h" />
-    <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.h" />
-    <ClInclude Include="src\Azer\Renderer\GraphicCamera.h" />
+    <ClInclude Include="vendor\stb_image\stb_image_write.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\tiny_gltf\json.hpp">
+      <Filter>vendor\tiny_gltf</Filter>
+    </ClInclude>
+    <ClInclude Include="vendor\tiny_gltf\tiny_gltf.h">
+      <Filter>vendor\tiny_gltf</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Core\Application.cpp">
@@ -1481,6 +1538,9 @@
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCamera.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
@@ -1491,6 +1551,9 @@
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\Renderer.cpp">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer\Renderer2D.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\RendererAPI.cpp">
@@ -1504,6 +1567,36 @@
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\VertexArray.cpp">
       <Filter>src\Azer\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\RendererPBR.cpp">
+      <Filter>src\Azer\Renderer3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\BRDFLUT.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\EnvCubemap.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\IrradianceMap.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\PBR.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\PrefilterMap.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\Material\OpenGLMaterial.cpp">
+      <Filter>src\Platform\OpenGL\Material</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1535,10 +1628,9 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Azer\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp" />
+    <ClCompile Include="vendor\tiny_gltf\tiny_gltf.cpp">
+      <Filter>vendor\tiny_gltf</Filter>
+    </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image_write.cpp" />
   </ItemGroup>
 </Project>

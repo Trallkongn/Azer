@@ -4,9 +4,6 @@ D:\Datas\GameEngine\Azer\Azer\src\Azer\Core\LayerStack.cpp;D:\Datas\GameEngine\A
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Core\Log.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Log.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiBuild.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiBuild.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\ImGui\ImGuiLayer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\ImGuiLayer.obj
-D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PerspectiveGraphicCamera.obj
-D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PerspectiveGraphicCameraController.obj
-D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\Renderer3D.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Renderer3D.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\Buffer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Buffer.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\GraphicsContext.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\GraphicsContext.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\OrthoGraphicCamera.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OrthoGraphicCamera.obj
@@ -18,6 +15,16 @@ D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\RendererAPI.cpp;D:\Datas\GameEng
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\Shader.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Shader.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\Texture.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Texture.obj
 D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer\VertexArray.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\VertexArray.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PerspectiveGraphicCamera.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PerspectiveGraphicCameraController.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\Renderer3D.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\Renderer3D.obj
+D:\Datas\GameEngine\Azer\Azer\src\Azer\Renderer3D\RendererPBR.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\RendererPBR.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\IBL\BRDFLUT.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\BRDFLUT.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\IBL\EnvCubemap.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\EnvCubemap.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\IBL\IrradianceMap.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\IrradianceMap.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\IBL\PBR.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PBR.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\IBL\PrefilterMap.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\PrefilterMap.obj
+D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\Material\OpenGLMaterial.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OpenGLMaterial.obj
 D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\OpenGLBuffer.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OpenGLBuffer.obj
 D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\OpenGLContext.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OpenGLContext.obj
 D:\Datas\GameEngine\Azer\Azer\src\Platform\OpenGL\OpenGLRendererAPI.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\OpenGLRendererAPI.obj
@@ -28,3 +35,5 @@ D:\Datas\GameEngine\Azer\Azer\src\Platform\Windows\WindowsInput.cpp;D:\Datas\Gam
 D:\Datas\GameEngine\Azer\Azer\src\Platform\Windows\WindowsWindow.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\WindowsWindow.obj
 D:\Datas\GameEngine\Azer\Azer\src\azpch.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\azpch.obj
 D:\Datas\GameEngine\Azer\Azer\vendor\stb_image\stb_image.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\stb_image.obj
+D:\Datas\GameEngine\Azer\Azer\vendor\stb_image\stb_image_write.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\stb_image_write.obj
+D:\Datas\GameEngine\Azer\Azer\vendor\tiny_gltf\tiny_gltf.cpp;D:\Datas\GameEngine\Azer\bin-int\Debug-windows-x86_64\Azer\tiny_gltf.obj

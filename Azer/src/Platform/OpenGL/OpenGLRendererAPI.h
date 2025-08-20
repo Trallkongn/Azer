@@ -17,6 +17,9 @@ namespace Azer {
 
 		void DrawIndexed(const Azer::Ref<VertexArray> vertexArray) override;
 		void DrawLine(const Azer::Ref<VertexArray> vertexArray) override;
+		void DrawArray(const Azer::Ref<VertexArray> vertexArray, uint32_t count) override;
+
+		void FramebufferTexture2D(uint32_t index, uint32_t rendererID, int miplevels = 0) override;
 
 
 	};

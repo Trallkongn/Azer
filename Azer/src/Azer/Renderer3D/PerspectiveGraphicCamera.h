@@ -21,6 +21,8 @@ namespace Azer {
 		
 		inline void SetWorldUp(const glm::vec3& worldUp) { m_WorldUp = worldUp; ReCalculateViewMatrix(); }
 		inline const glm::vec3& GetWorldUp() const { return m_WorldUp; }
+
+		inline const glm::vec3& GetCamPos() const { return m_Position; }
 		
 		inline const glm::mat4& GetProjectionMatrix() const override { return m_ProjectionMatrix; }
 		inline const glm::mat4& GetViewMatrix() const override { return m_ViewMatrix; }
@@ -34,8 +36,9 @@ namespace Azer {
 		glm::mat4 m_ViewMatrix;       // View matrix
 		glm::mat4 m_ViewProjectionMatrix; // Combined view-projection matrix
 
-		glm::vec3 m_Position = { 50,50,50 }; // Camera position in world space
+		glm::vec3 m_Position = { 5,5,5 }; // Camera position in world space
 		glm::vec3 m_Center = { 0, 0, 0 };
 		glm::vec3 m_WorldUp = { 0, 1, 0 };
 	};
+
 }

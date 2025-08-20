@@ -137,6 +137,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\NewLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\NewLayer.cpp" />
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>
@@ -144,13 +147,6 @@
     <ProjectReference Include="..\Azer\Azer.vcxproj">
       <Project>{97C8827C-83FF-830D-2CEC-69101802000F}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="assets\shaders\CubeLine.glsl" />
-    <None Include="assets\shaders\Renderer3D.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\NewLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

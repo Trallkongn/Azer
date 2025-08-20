@@ -34,6 +34,15 @@ namespace Azer
 		{
 			s_RendererAPI->DrawLine(vertexArray);
 		}
+		inline static void DrawArray(const Azer::Ref<VertexArray>& vertexArray, uint32_t count)
+		{
+			s_RendererAPI->DrawArray(vertexArray, count);
+		}
+
+		inline static void FramebufferTexture2D(uint32_t index, uint32_t rendererID, int miplevels = 0)
+		{
+			s_RendererAPI->FramebufferTexture2D(index, rendererID, miplevels);
+		}
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

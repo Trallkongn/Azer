@@ -19,7 +19,20 @@ namespace Azer {
 	class Texture2D : public Texture
 	{
 	public:
-		static Ref<Texture2D> Create(uint32_t width, uint32_t height);
-		static Ref<Texture2D> Create(const std::string& path);
+		static Ref<Texture2D> Create(uint32_t width, uint32_t height, const unsigned char* data = nullptr);
+		static Ref<Texture2D> Create(const std::string& path, bool isHDR = false);
+	};
+
+	class CubeMap
+	{
+	public:
+		virtual ~CubeMap() = default;
+
+		virtual void Bind(uint32_t slot = 0) const = 0;
+
+		virtual uint32_t GetRendererID() const = 0;
+
+		static Ref<CubeMap> Create(uint32_t width, uint32_t height);
+		static Ref<CubeMap> Create(int miplevels);
 	};
 }
