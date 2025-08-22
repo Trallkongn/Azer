@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include <Azer/FileSystem/FileFormatRecognizer.h>
+
 namespace Azer {
 
 
@@ -32,6 +34,8 @@ namespace Azer {
 				m_DataFormat, GL_UNSIGNED_BYTE,
 				data
 			);
+
+			glGenerateMipmap(GL_TEXTURE_2D);
 		}
 	}
 
@@ -45,6 +49,7 @@ namespace Azer {
 
 		if (isHDR)
 		{
+			m_FileFormat = FileFormat::HDR;
 			AZ_CORE_INFO("start create HDR texture2D");
 			stbi_set_flip_vertically_on_load(true);
 			float* data = stbi_loadf(path.c_str(), &width, &height, &channels, 0);
@@ -80,6 +85,7 @@ namespace Azer {
 		}
 		else
 		{
+			m_FileFormat = FileFormatRecognizer::Instance().Recognize(path);
 			stbi_set_flip_vertically_on_load(1);
 			stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 			AZ_CORE_ASSERT(data, "Failed to load image!");
@@ -116,32 +122,6 @@ namespace Azer {
 
 			stbi_image_free(data);
 		}
-	}
-
-	OpenGLTexture2D::OpenGLTexture2D(const tinygltf::Model& model, int texIndex)
-		: m_RendererID(0)
-	{
-		if (texIndex < 0 || texIndex >= model.textures.size()) return;
-
-		const tinygltf::Texture& tex = model.textures[texIndex];
-		const tinygltf::Image& image = model.images[tex.source];
-
-		glGenTextures(1, &m_RendererID);
-		glBindTexture(GL_TEXTURE_2D, m_RendererID);
-
-		GLenum format = GL_RGBA;
-		if (image.component == 3) format = GL_RGB;
-
-		glTexImage2D(GL_TEXTURE_2D, 0, format,
-			image.width, image.height, 0,
-			format, GL_UNSIGNED_BYTE, image.image.data());
-
-		glGenerateMipmap(GL_TEXTURE_2D);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 	OpenGLTexture2D::~OpenGLTexture2D()

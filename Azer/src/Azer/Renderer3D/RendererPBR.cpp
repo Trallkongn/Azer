@@ -7,29 +7,21 @@
 #include <Azer/Renderer/VertexArray.h>
 #include <Azer/Renderer/Renderer.h>
 #include <Azer/Renderer/Texture.h>
+#include <Azer/Renderer/IBL.h>
 
-#include <glad/glad.h>
-
-#include <Platform/OpenGL/Material/OpenGLMaterial.h>
-
-#include <Platform/OpenGL/IBL/EnvCubemap.h>
-#include <Platform/OpenGL/IBL/IrradianceMap.h>
-#include <Platform/OpenGL/IBL/PrefilterMap.h>
-#include <Platform/OpenGL/IBL/BRDFLUT.h>
 #include <Platform/OpenGL/IBL/PBR.h>
 
 namespace Azer {
 
 	struct RendererPBRStorage
 	{
-		Ref<EnvCubeMap> eMap;
+		Ref<HDRtoCubeMap> hMap;
 		Ref<IrradianceMap> iMap;
 		Ref<PrefilterMap>  pMap;
 		Ref<BRDFLUT> brdflut;
 		Ref<PBR> pbr;
 
 		Ref<VertexArray> vertexArray;
-		Ref<OpenGLMaterial> material;
 
 		glm::mat4 viewMatrix;
 		glm::mat4 projectionMatrix;
@@ -39,7 +31,6 @@ namespace Azer {
 
 	static RendererPBRStorage* s_Data_PBR;
 
-	// 对PBR进行渲染，需要在其它RendererAPI前调用
 	void RendererPBR::BeginScene(PerspectiveGraphicCamera camera)
 	{
 		s_Data_PBR->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
@@ -99,6 +90,17 @@ namespace Azer {
 			 1.0f, -1.0f,  1.0f
 		};
 
+		glm::mat4 m_CaptureProjection = glm::perspective(glm::radians(90.0f), 1.0f, 0.1f, 10.0f);
+
+		std::vector<glm::mat4> m_CaptureViews = {
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f,-1.0f, 0.0f)), // +X
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f,-1.0f, 0.0f)), // -X
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f)), // +Y
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f,-1.0f, 0.0f), glm::vec3(0.0f, 0.0f,-1.0f)), // -Y
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f,-1.0f, 0.0f)), // +Z
+				glm::lookAt(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f,-1.0f), glm::vec3(0.0f,-1.0f, 0.0f))  // -Z
+		};
+
 		Ref<VertexBuffer> vbo = VertexBuffer::Create(vertices, sizeof(vertices));
 
 		BufferLayout layout = {
@@ -109,38 +111,32 @@ namespace Azer {
 
 		s_Data_PBR->vertexArray->AddVertexBuffer(vbo);
 
-		s_Data_PBR->material = CreateRef<OpenGLMaterial>("assets/textures/gltf/oak_veneer_01_2k.gltf");
+		s_Data_PBR->hMap = HDRtoCubeMap::Create(1024, 1024, "assets/textures/qwantani_dusk_2_puresky_4k.hdr", s_Data_PBR->vertexArray, m_CaptureProjection, m_CaptureViews);
+		s_Data_PBR->hMap->BakeRender();
 
-		s_Data_PBR->eMap = CreateRef<EnvCubeMap>(1024, 1024, "assets/textures/qwantani_dusk_2_puresky_4k.hdr", s_Data_PBR->vertexArray);
-		s_Data_PBR->eMap->BakeRender();
-
-		s_Data_PBR->iMap = CreateRef<IrradianceMap>(32, 32, s_Data_PBR->eMap->GetCubeMap(), s_Data_PBR->vertexArray);
+		s_Data_PBR->iMap = IrradianceMap::Create(32, 32, s_Data_PBR->hMap->GetRendererID(), s_Data_PBR->vertexArray, m_CaptureProjection,m_CaptureViews);
 
 		s_Data_PBR->iMap->BakeRender();
 
-		s_Data_PBR->pMap = CreateRef<PrefilterMap>(128, 128, 5, s_Data_PBR->eMap->GetCubeMap(), s_Data_PBR->vertexArray);
+		s_Data_PBR->pMap = PrefilterMap::Create(5,128, 128, s_Data_PBR->hMap->GetRendererID(), s_Data_PBR->vertexArray, m_CaptureProjection, m_CaptureViews);
 
 		s_Data_PBR->pMap->BakeRender();
 
-		s_Data_PBR->brdflut = CreateRef<BRDFLUT>();
-
+		s_Data_PBR->brdflut = BRDFLUT::Create(512, 512);
 		s_Data_PBR->brdflut->BakeRender();
 
-		s_Data_PBR->material->SetIrradianceMapTexture(s_Data_PBR->iMap->GetCubeMap());
-		s_Data_PBR->material->SetPrefilterMapTexture(s_Data_PBR->pMap->GetCubeMap());
-		s_Data_PBR->material->SetBrdfLUTTexture(s_Data_PBR->brdflut->GetRendererID());
-
-		s_Data_PBR->pbr = CreateRef<PBR>(s_Data_PBR->material);
+		s_Data_PBR->pbr = CreateRef<PBR>();
 	}
 
-	// 渲染一个天空盒
 	void RendererPBR::DrawHDR_Env(const glm::vec3& position, const glm::vec3& size)
 	{
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) *
 			glm::scale(glm::mat4(1.0f), glm::vec3(size.x, size.y, size.z));
 
-		s_Data_PBR->eMap->Render(s_Data_PBR->viewMatrix,s_Data_PBR->projectionMatrix);
-		s_Data_PBR->pbr->Render(s_Data_PBR->camPos,transform,s_Data_PBR->ViewProjectionMatrix);
+		s_Data_PBR->hMap->RenderScene(s_Data_PBR->viewMatrix,s_Data_PBR->projectionMatrix);
+		s_Data_PBR->pbr->Render(s_Data_PBR->iMap->GetRendererID(),s_Data_PBR->pMap->GetRendererID(),
+			s_Data_PBR->brdflut->GetRendererID(),
+			s_Data_PBR->camPos,transform,s_Data_PBR->ViewProjectionMatrix);
 	}
 
 	void RendererPBR::EndScene()

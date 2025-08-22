@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
 #include "Azer/Core/Core.h"
+#include <Azer/FileSystem/Asset.h>
 
 namespace Azer {
 
-	class Texture
+	class Texture : public Asset
 	{
 	public:
-		virtual ~Texture() = default;
 		virtual uint32_t GetWidth() const = 0;
 		virtual uint32_t GetHeight() const = 0;
 

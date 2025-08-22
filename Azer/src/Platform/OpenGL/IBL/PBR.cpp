@@ -4,12 +4,24 @@
 #include <Azer/Renderer/Renderer.h>
 #include <cstddef> // for offsetof
 
+#include <Azer/FileSystem/SourceLoader.h>
+#include <Azer/GLTF/GLTF.h>
+
 namespace Azer {
 
-	PBR::PBR(Ref<OpenGLMaterial> material)
-		: m_Material(material)
+	PBR::PBR()
 	{
         m_PBR_shader = Shader::Create("assets/shaders/PBR/PBR_shader_with_no_tangent.glsl");
+
+        auto& loader = SourceLoader::Instance();
+
+        Ref<Asset> asset = loader.Load("assets/textures/gltf/oak_veneer_01_2k.gltf");
+        
+        auto& i = std::dynamic_pointer_cast<GLTF>(asset);
+
+        m_Material = i->GetMaterials()[0];
+
+        AZ_TRACE("GLTF UUID: {}", i->GetAssetID().ToString());
 
         m_VertexArray = VertexArray::Create();
 
@@ -64,14 +76,6 @@ namespace Azer {
              -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
         };
 
-        /*const CustomMesh& mesh = m_Material->GetCustomMesh();
-
-        std::cout << mesh.primitive.vertices.size() << std::endl;
-        std::cout << mesh.primitive.indices.size() << std::endl;
-
-        float* vertices = (float*)mesh.primitive.vertices.data();*/
-        //uint32_t* indices = (uint32_t*)mesh.primitive.indices.data();
-
         Ref<VertexBuffer> vbo = VertexBuffer::Create(cubeVertices,sizeof(cubeVertices));
 
         BufferLayout layout = {
@@ -88,7 +92,7 @@ namespace Azer {
 
 	}
 
-    void PBR::Render(const glm::vec3& camPos, const glm::mat4& transform, const glm::mat4& viewProjectionMatrix)
+    void PBR::Render(uint32_t iMap, uint32_t pMap, uint32_t brdfLUT,const glm::vec3& camPos, const glm::mat4& transform, const glm::mat4& viewProjectionMatrix)
     {
         m_PBR_shader->Bind();
 
@@ -102,22 +106,22 @@ namespace Azer {
         // ---------------------------
         // °ó¶¨ PBR ²ÄÖÊÌùÍ¼
         // ---------------------------
-        m_Material->GetAlbedoMapTexture()->Bind(0);
+        m_Material.m_AlbedoMap->Bind(0);
         m_PBR_shader->SetInt("albedoMap", 0);
 
-        m_Material->GetMetallicRoughnessMapTexture()->Bind(1);
+        m_Material.m_MetallicRoughnessMap->Bind(1);
         m_PBR_shader->SetInt("metallicRoughnessMap", 1);
 
-        m_Material->GetAoMapTexture()->Bind(2);
+        m_Material.m_AoMap->Bind(2);
         m_PBR_shader->SetInt("aoMap", 2);
 
-        m_Material->GetIrradianceMapTexture()->Bind(3);
+        glBindTextureUnit(3, iMap);
         m_PBR_shader->SetInt("irradianceMap", 3);
 
-        m_Material->GetPrefilterMapTexture()->Bind(4);
+        glBindTextureUnit(4, pMap);
         m_PBR_shader->SetInt("prefilterMap", 4);
 
-        glBindTextureUnit(5, m_Material->GetBrdfLUTTexture());
+        glBindTextureUnit(5, brdfLUT);
         m_PBR_shader->SetInt("brdfLUT", 5);
 
         // ---------------------------

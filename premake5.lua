@@ -41,6 +41,7 @@ project "Azer"
   {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp",
+    "%{prj.name}/src/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.h",
     "%{prj.name}/vendor/glm/glm/**.inl",
@@ -124,7 +125,7 @@ project "Sandbox"
     "Azer/vendor/spdlog/include",
     "Azer/src",
     "Azer/vendor",
-    "%{IncludeDir.glm}",
+    "%{IncludeDir.glm}"
   }
 
   links

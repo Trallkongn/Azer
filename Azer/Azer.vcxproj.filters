@@ -10,14 +10,26 @@
     <Filter Include="src\Azer\Core">
       <UniqueIdentifier>{2645EEC8-9205-6AFF-5B40-B37CC7BFAEDB}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Azer\Debug">
-      <UniqueIdentifier>{0445C3E6-F012-B7EC-D9A6-2713C5139351}</UniqueIdentifier>
+    <Filter Include="src\Azer\DebugTools">
+      <UniqueIdentifier>{75D6199C-E137-F7A9-6AA5-3D5CD6052E69}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Azer\Events">
       <UniqueIdentifier>{3238B6C2-9EC3-2387-A7D4-A67B13DF7F87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Azer\FileSystem">
+      <UniqueIdentifier>{62E507B5-CE46-E5C2-57B4-2B75C3141C82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Azer\GLTF">
+      <UniqueIdentifier>{CADDEFC8-369E-6BFF-FFD8-B47C6B58B0DB}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Azer\ImGui">
       <UniqueIdentifier>{B8AF21E7-A47D-15ED-8D11-8613797EF151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Azer\Material">
+      <UniqueIdentifier>{6C06067D-D81C-0413-2194-8F348DE9D49A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Azer\Mesh">
+      <UniqueIdentifier>{8A96F3C8-F656-6FFF-BF91-B87C2B11B4DB}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Azer\Renderer">
       <UniqueIdentifier>{741B2040-E031-1ED6-29A9-A9F795FEEE5D}</UniqueIdentifier>
@@ -33,9 +45,6 @@
     </Filter>
     <Filter Include="src\Platform\OpenGL\IBL">
       <UniqueIdentifier>{DBBB207D-47F3-6814-50FD-CC37BCB38F0D}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Platform\OpenGL\Material">
-      <UniqueIdentifier>{735EAE4C-5F19-9EF8-08D1-1643F46AE888}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -105,11 +114,14 @@
     <ClInclude Include="src\Azer\Core\TimeStep.h">
       <Filter>src\Azer\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Core\UUID.hpp">
+      <Filter>src\Azer\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Core\Window.h">
       <Filter>src\Azer\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\DebugTools\Instrumentor.h">
-      <Filter>src\Azer\Debug</Filter>
+      <Filter>src\Azer\DebugTools</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Events\ApplicationEvent.h">
       <Filter>src\Azer\Events</Filter>
@@ -123,8 +135,29 @@
     <ClInclude Include="src\Azer\Events\MouseEvent.h">
       <Filter>src\Azer\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\FileSystem\Asset.h">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\FileSystem\FileFormatRecognizer.h">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\FileSystem\FileSystem.h">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\FileSystem\SourceLoader.h">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\GLTF\GLTF.h">
+      <Filter>src\Azer\GLTF</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h">
       <Filter>src\Azer\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Material\Material.h">
+      <Filter>src\Azer\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Mesh\Mesh.h">
+      <Filter>src\Azer\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\Buffer.h">
       <Filter>src\Azer\Renderer</Filter>
@@ -133,6 +166,9 @@
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\GraphicsContext.h">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer\IBL.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\OrthoGraphicCamera.h">
@@ -174,23 +210,20 @@
     <ClInclude Include="src\Azer\Renderer3D\RendererPBR.h">
       <Filter>src\Azer\Renderer3D</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\IBL\BRDFLUT.h">
+    <ClInclude Include="src\Platform\OpenGL\IBL\OpenGLBRDFLUT.h">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\IBL\EnvCubemap.h">
+    <ClInclude Include="src\Platform\OpenGL\IBL\OpenGLHDRtoCubeMap.h">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\IBL\IrradianceMap.h">
+    <ClInclude Include="src\Platform\OpenGL\IBL\OpenGLIrradianceMap.h">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\IBL\OpenGLPrefilterMap.h">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\IBL\PBR.h">
       <Filter>src\Platform\OpenGL\IBL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\IBL\PrefilterMap.h">
-      <Filter>src\Platform\OpenGL\IBL</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\Material\OpenGLMaterial.h">
-      <Filter>src\Platform\OpenGL\Material</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1529,16 +1562,34 @@
     <ClCompile Include="src\Azer\Core\Log.cpp">
       <Filter>src\Azer\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\Azer\FileSystem\FileFormatRecognizer.cpp">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\FileSystem\FileSystem.cpp">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\FileSystem\SourceLoader.cpp">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\GLTF\GLTF.cpp">
+      <Filter>src\Azer\GLTF</Filter>
+    </ClCompile>
     <ClCompile Include="src\Azer\ImGui\ImGuiBuild.cpp">
       <Filter>src\Azer\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp">
       <Filter>src\Azer\ImGui</Filter>
     </ClCompile>
+    <ClCompile Include="src\Azer\Mesh\Mesh.cpp">
+      <Filter>src\Azer\Mesh</Filter>
+    </ClCompile>
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp">
+      <Filter>src\Azer\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer\IBL.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer\OrthoGraphicCamera.cpp">
@@ -1580,23 +1631,20 @@
     <ClCompile Include="src\Azer\Renderer3D\RendererPBR.cpp">
       <Filter>src\Azer\Renderer3D</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\IBL\BRDFLUT.cpp">
+    <ClCompile Include="src\Platform\OpenGL\IBL\OpenGLBRDFLUT.cpp">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\IBL\EnvCubemap.cpp">
+    <ClCompile Include="src\Platform\OpenGL\IBL\OpenGLHDRtoCubeMap.cpp">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\IBL\IrradianceMap.cpp">
+    <ClCompile Include="src\Platform\OpenGL\IBL\OpenGLIrradianceMap.cpp">
+      <Filter>src\Platform\OpenGL\IBL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\IBL\OpenGLPrefilterMap.cpp">
       <Filter>src\Platform\OpenGL\IBL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\IBL\PBR.cpp">
       <Filter>src\Platform\OpenGL\IBL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\IBL\PrefilterMap.cpp">
-      <Filter>src\Platform\OpenGL\IBL</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\Material\OpenGLMaterial.cpp">
-      <Filter>src\Platform\OpenGL\Material</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1628,9 +1676,11 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="vendor\stb_image\stb_image_write.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
     <ClCompile Include="vendor\tiny_gltf\tiny_gltf.cpp">
       <Filter>vendor\tiny_gltf</Filter>
     </ClCompile>
-    <ClCompile Include="vendor\stb_image\stb_image_write.cpp" />
   </ItemGroup>
 </Project>
