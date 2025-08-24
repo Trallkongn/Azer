@@ -56,8 +56,7 @@ namespace Azer {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClosed));
-
-		AZ_CORE_TRACE("{0}",e.ToString());
+		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(Application::onWindowResized));
 
 		// from out to inner
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
@@ -83,5 +82,11 @@ namespace Azer {
 	{
 		m_Running = false;
 		return true;
+	}
+
+	bool Application::onWindowResized(WindowResizeEvent& e)
+	{
+		Renderer::ResizeWindow(m_Window->GetWidth(), m_Window->GetHeight());
+		return false;
 	}
 }

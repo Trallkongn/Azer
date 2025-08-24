@@ -30,6 +30,7 @@ namespace Azer {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool onWindowClosed(WindowCloseEvent& e);
+		bool onWindowResized(WindowResizeEvent& e);
 	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer; // Azer's ImGui
