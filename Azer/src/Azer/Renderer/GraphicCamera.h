@@ -2,7 +2,7 @@
 #include <Azer/Core/Core.h>
 #include <glm/glm.hpp>
 
-namespace {
+namespace Azer {
 
 	class GraphicCamera
 	{
@@ -17,7 +17,6 @@ namespace {
 		virtual const glm::mat4& GetViewProjectionMatrix()	const = 0;
 
 	private:
-
 		virtual void ReCalculateViewMatrix() = 0;
 	};
 }

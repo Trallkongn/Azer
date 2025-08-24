@@ -21,6 +21,8 @@ namespace Azer {
 
 		void FramebufferTexture2D(uint32_t index, uint32_t rendererID, int miplevels = 0) override;
 
+		void CullFace(bool statu = true) override;
 
+		void BindTexUnit(uint32_t TexId, int slot = 0) override;
 	};
 }

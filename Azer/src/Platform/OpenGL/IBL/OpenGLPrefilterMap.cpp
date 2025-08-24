@@ -63,6 +63,7 @@ namespace Azer {
 
 				m_VertexArray->Bind();
 				RenderCommand::DrawArray(m_VertexArray, 36);
+				m_VertexArray->UnBind();
 			}
 		}
 		m_fbrb->UnBind();

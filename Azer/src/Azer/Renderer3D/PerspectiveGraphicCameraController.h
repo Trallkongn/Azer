@@ -29,6 +29,8 @@ namespace Azer {
 		
 		inline void SetYaw(float yaw) { m_Yaw = yaw; }
 		inline float GetYaw() const { return m_Yaw; }
+		
+		inline void SetCenter(const glm::vec3& center) { m_Center = center; }
 
 		inline void SetCameraRotationSpeed(float speed) { m_CameraRotationSpeed = speed; }
 		inline float GetCameraRotationSpeed() const { return m_CameraRotationSpeed; }
@@ -37,6 +39,7 @@ namespace Azer {
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResized(WindowResizeEvent& e);
+		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
 
 	private:
 
@@ -61,5 +64,8 @@ namespace Azer {
 		float m_CameraRotation = 0.0f;
 		float m_CameraSpeed = 1.0f;
 		float m_CameraRotationSpeed = 50.0f;
+
+		float last_xpos = 0.0;
+		float last_ypos = 0.0;
 	};
 }

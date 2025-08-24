@@ -3,7 +3,6 @@
 #include "Renderer.h"
 #include "Renderer2D.h"
 #include <Azer/Renderer3D/Renderer3D.h>
-#include <Azer/Renderer3D/RendererPBR.h>
 
 namespace Azer {
 
@@ -14,7 +13,6 @@ namespace Azer {
 		AZ_PROFILE_FUNCTION();
 
 		RenderCommand::Init();
-		RendererPBR::Init();
 		Renderer2D::Init();
 		Renderer3D::Init();
 		
@@ -43,6 +41,7 @@ namespace Azer {
 		shader->SetMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
+		vertexArray->UnBind();
 	}
 
 	void Renderer::Shutdown()

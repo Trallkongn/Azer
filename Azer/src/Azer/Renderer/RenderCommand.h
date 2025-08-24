@@ -22,14 +22,17 @@ namespace Azer
 		{
 			s_RendererAPI->SetClearColor(color);
 		}
+
 		inline static void Clear()
 		{
 			s_RendererAPI->Clear();
 		}
+
 		inline static void DrawIndexed(const Azer::Ref<VertexArray>& vertexArray)
 		{
 			s_RendererAPI->DrawIndexed(vertexArray);
 		}
+
 		inline static void DrawLine(const Azer::Ref<VertexArray>& vertexArray)
 		{
 			s_RendererAPI->DrawLine(vertexArray);
@@ -43,6 +46,17 @@ namespace Azer
 		{
 			s_RendererAPI->FramebufferTexture2D(index, rendererID, miplevels);
 		}
+
+		inline static void CullFace(bool statu = true)
+		{
+			s_RendererAPI->CullFace(statu);
+		}
+
+		inline static void BindTexUnit(uint32_t TexId, int slot = 0)
+		{
+			s_RendererAPI->BindTexUnit(TexId, slot);
+		}
+
 	private:
 		static RendererAPI* s_RendererAPI;
 	};

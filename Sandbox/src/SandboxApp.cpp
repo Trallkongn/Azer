@@ -8,6 +8,7 @@ class Sandbox : public Azer::Application
 public:
 	Sandbox()
 	{
+		//PushLayer(new ObjectCreationLayer());
 		PushLayer(new NewLayer("NewLayer"));
 	}
 

@@ -58,7 +58,6 @@ namespace Azer {
 
 			if (!m_Minimized)
 			{
-
 				{
 					AZ_PROFILE_SCOPE("Layer OnUpdate");
 					for (Layer* layer : m_LayerStack)

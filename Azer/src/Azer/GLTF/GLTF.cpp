@@ -1,4 +1,4 @@
-#include "azpch.h"
+ï»¿#include "azpch.h"
 #include "GLTF.h"
 
 #include <Azer/FileSystem/FileFormatRecognizer.h>
@@ -20,6 +20,10 @@ namespace Azer {
             ret = m_Loader.LoadBinaryFromFile(&m_Model, &m_Err, &m_Warn, path);
             m_FileFormat = FileFormat::GLB;
         }
+
+        if (ret) {
+            DebugMeshMaterialBinding(m_Model);
+        }
             
         if (!m_Warn.empty()) {
             AZ_CORE_WARN("Load glTF : {}", m_Warn);
@@ -39,10 +43,37 @@ namespace Azer {
 
     }
 
+    void  GLTF::DebugMeshMaterialBinding(const tinygltf::Model& model) {
+        std::cout << "========== Mesh <-> Material Relationship ==========\n";
+
+        for (size_t meshIndex = 0; meshIndex < model.meshes.size(); ++meshIndex) {
+            const auto& mesh = model.meshes[meshIndex];
+            std::cout << "Mesh[" << meshIndex << "] name = " << mesh.name << "\n";
+
+            for (size_t primIndex = 0; primIndex < mesh.primitives.size(); ++primIndex) {
+                const auto& prim = mesh.primitives[primIndex];
+                int matIndex = prim.material;
+
+                if (matIndex >= 0 && matIndex < model.materials.size()) {
+                    const auto& mat = model.materials[matIndex];
+                    std::cout << "  Primitive[" << primIndex << "] -> Material[" << matIndex
+                        << "] name = " << mat.name << "\n";
+                }
+                else {
+                    std::cout << "  Primitive[" << primIndex << "] -> No material (matIndex = " << matIndex << ")\n";
+                }
+            }
+        }
+
+        std::cout << "=============================================\n";
+    }
+
     void GLTF::LoadMesh()
     {
         for (auto& mesh : m_Model.meshes)
         {
+            MeshData new_mesh;
+
             const tinygltf::Primitive& prim = mesh.primitives[0];
 
             bool hasTangent = prim.attributes.find("TANGENT") != prim.attributes.end();
@@ -75,86 +106,51 @@ namespace Azer {
                 tangentData = reinterpret_cast<const float*>(&(tangentBuffer.data[tangentView.byteOffset + tangentAccessor.byteOffset]));
             }
 
-            Primitive primitive;
-            AABB bounds;
-
-            // ³õÊ¼»¯°üÎ§ºĞ
-            bounds.min = { std::numeric_limits<float>::max(),
-                           std::numeric_limits<float>::max(),
-                           std::numeric_limits<float>::max() };
-            bounds.max = { std::numeric_limits<float>::lowest(),
-                           std::numeric_limits<float>::lowest(),
-                           std::numeric_limits<float>::lowest() };
-
-            // ¶ÁÈ¡¶¥µãÊı¾İ
+            // è¯»å–é¡¶ç‚¹æ•°æ®
             for (size_t i = 0; i < posAccessor.count; ++i) {
                 Vertex v;
-                v.pos[0] = posData[i * 3 + 0];
-                v.pos[1] = posData[i * 3 + 1];
-                v.pos[2] = posData[i * 3 + 2];
+                v.position[0] = posData[i * 3 + 0];
+                v.position[1] = posData[i * 3 + 1];
+                v.position[2] = posData[i * 3 + 2];
 
                 v.normal[0] = normData[i * 3 + 0];
                 v.normal[1] = normData[i * 3 + 1];
                 v.normal[2] = normData[i * 3 + 2];
 
-                v.uv[0] = uvData[i * 2 + 0];
-                v.uv[1] = uvData[i * 2 + 1];
+                v.texCoord[0] = uvData[i * 2 + 0];
+                v.texCoord[1] = uvData[i * 2 + 1];
 
-                if (hasTangent) {
-                    v.tangent[0] = tangentData[i * 4 + 0];
-                    v.tangent[1] = tangentData[i * 4 + 1];
-                    v.tangent[2] = tangentData[i * 4 + 2];
-                    v.tangent[3] = tangentData[i * 4 + 3];
-                }
-
-                // ¸üĞÂ AABB
-                for (int j = 0; j < 3; j++) {
-                    bounds.min[j] = std::min(bounds.min[j], v.pos[j]);
-                    bounds.max[j] = std::max(bounds.max[j], v.pos[j]);
-                }
-
-                primitive.vertices.push_back(v);
+                new_mesh.vertices.push_back(v);
             }
 
-            // ¶ÁÈ¡Ë÷Òı
+            // è¯»å–ç´¢å¼•
             const tinygltf::Accessor& idxAccessor = m_Model.accessors.at(prim.indices);
             const tinygltf::BufferView& idxView = m_Model.bufferViews.at(idxAccessor.bufferView);
             const tinygltf::Buffer& idxBuffer = m_Model.buffers.at(idxView.buffer);
 
             if (idxAccessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_SHORT) {
                 const unsigned short* buf = reinterpret_cast<const unsigned short*>(&(idxBuffer.data[idxView.byteOffset + idxAccessor.byteOffset]));
-                for (size_t i = 0; i < idxAccessor.count; ++i) primitive.indices.push_back(buf[i]);
+                for (size_t i = 0; i < idxAccessor.count; ++i) new_mesh.indices.push_back(buf[i]);
             }
             else if (idxAccessor.componentType == TINYGLTF_COMPONENT_TYPE_UNSIGNED_INT) {
                 const unsigned int* buf = reinterpret_cast<const unsigned int*>(&(idxBuffer.data[idxView.byteOffset + idxAccessor.byteOffset]));
-                for (size_t i = 0; i < idxAccessor.count; ++i) primitive.indices.push_back(buf[i]);
+                for (size_t i = 0; i < idxAccessor.count; ++i) new_mesh.indices.push_back(buf[i]);
             }
             else {
                 std::cerr << "Unsupported index component type\n";
                 return;
             }
 
-            // ¹¹½¨ Mesh
-            Mesh myMesh;
-            myMesh.id = UUID::GenerateV4();
-            myMesh.name = mesh.name;
-            myMesh.bounds = bounds;
-            myMesh.primitives.push_back(std::move(primitive));
+            AZ_CORE_INFO("Mesh loaded: (Vertices: {}, Indices: {})",
+                new_mesh.vertices.size(),
+                new_mesh.indices.size()
+            );
 
-            AZ_CORE_INFO("Mesh loaded: {} (Vertices: {}, Indices: {})",
-                myMesh.name.c_str(),
-                myMesh.primitives[0].vertices.size(),
-                myMesh.primitives[0].indices.size());
-
-            m_Meshes.push_back(std::move(myMesh));
-
-            AZ_CORE_INFO("Bounds: Min({}, {}, {}) Max({}, {}, {})",
-                bounds.min[0], bounds.min[1], bounds.min[2],
-                bounds.max[0], bounds.max[1], bounds.max[2]);
+            m_Meshes.push_back(std::move(new_mesh));
         }
     }
 
-    // ¹¤¾ßº¯Êı£º·µ»Ø¼ÓÔØµÄÎÆÀí£¬Èç¹û²»´æÔÚ¾Í·µ»ØÄ¬ÈÏÎÆÀí
+    // å·¥å…·å‡½æ•°ï¼šè¿”å›åŠ è½½çš„çº¹ç†ï¼Œå¦‚æœä¸å­˜åœ¨å°±è¿”å›é»˜è®¤çº¹ç†
     static Ref<Texture2D> GetOrDefaultTexture(
         const tinygltf::Model& model, int texIndex, Ref<Texture2D> defaultTex)
     {
@@ -172,7 +168,7 @@ namespace Azer {
         return Texture2D::Create(image.width, image.height, image.image.data());
     }
 
-    // ´´½¨Ä¬ÈÏÎÆÀí£º°×É«/ºÚÉ«/ÖĞĞÔ normal
+    // åˆ›å»ºé»˜è®¤çº¹ç†ï¼šç™½è‰²/é»‘è‰²/ä¸­æ€§ normal
     static Ref<Texture2D> CreateDefaultTexture(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255)
     {
         unsigned char pixel[4] = { r, g, b, a };
@@ -181,9 +177,9 @@ namespace Azer {
 
     void GLTF::LoadMaterials()
     {
-        // Ô¤ÏÈ×¼±¸Ä¬ÈÏÎÆÀí
+        // é¢„å…ˆå‡†å¤‡é»˜è®¤çº¹ç†
         Ref<Texture2D> defaultWhite = CreateDefaultTexture(255, 255, 255); // albedo
-        Ref<Texture2D> defaultNormal = CreateDefaultTexture(128, 128, 255); // ·¨ÏßÌùÍ¼Ä¬ÈÏ
+        Ref<Texture2D> defaultNormal = CreateDefaultTexture(128, 128, 255); // æ³•çº¿è´´å›¾é»˜è®¤
         Ref<Texture2D> defaultBlack = CreateDefaultTexture(0, 0, 0);       // emissive
         Ref<Texture2D> defaultGray = CreateDefaultTexture(128, 128, 128); // metallicRoughness / AO
 
@@ -237,6 +233,8 @@ namespace Azer {
             else {
                 material.m_EmissiveMap = defaultBlack;
             }
+
+            AZ_CORE_INFO("Material loaded!");
 
             materials.push_back(material);
         }

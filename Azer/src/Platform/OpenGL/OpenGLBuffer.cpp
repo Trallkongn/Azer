@@ -4,7 +4,7 @@
 
 
 // VertexBuffer //////////////////////////////////////////////////
-Azer::OpenGLVertexBuffer::OpenGLVertexBuffer(float* vertices, uint32_t size)
+Azer::OpenGLVertexBuffer::OpenGLVertexBuffer(void* vertices, uint32_t size)
 	: m_RendererID(0)
 {
 	AZ_PROFILE_FUNCTION();
@@ -36,7 +36,7 @@ void Azer::OpenGLVertexBuffer::UnBind() const
 }
 
 // IndexBuffer //////////////////////////////////////////////////
-Azer::OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t* indeces, uint32_t count)
+Azer::OpenGLIndexBuffer::OpenGLIndexBuffer(void* indeces, uint32_t count)
 	: m_RendererID(0), m_Count(count)
 {
 	AZ_PROFILE_FUNCTION();

@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <Azer/Core/Input.h>
 #include <Azer/Core/KeyCodes.h>
+#include <imgui.h>
 
 namespace Azer {
 
@@ -59,8 +60,41 @@ namespace Azer {
 			AZ_CORE_INFO("Yaw: {}", m_Yaw);
 		}
 
+		ImGuiIO& io = ImGui::GetIO();
 
+		// 如果ImGui想要捕获事件，先让ImGui处理
+		if (io.WantCaptureMouse || io.WantCaptureKeyboard) {
+			last_xpos = Input::GetMouseX();
+			last_ypos = Input::GetMouseY();
+		}
+		else
+		{
+			if (Input::IsMouseButtonPressed(0))
+			{
+				float current_xpos = Input::GetMouseX();
+				float current_ypos = Input::GetMouseY();
 
+				float xoffset = current_xpos - last_xpos;
+				float yoffset = last_ypos - current_ypos;
+
+				last_xpos = current_xpos;
+				last_ypos = current_ypos;
+
+				m_Yaw += xoffset * delta * 10;
+				m_Pitch -= yoffset * delta * 10;
+			}
+			else
+			{
+				last_xpos = Input::GetMouseX();
+				last_ypos = Input::GetMouseY();
+			}
+		}
+
+		
+
+		// 限制上下角度，防止翻转
+		if (m_Pitch > 89.0f) m_Pitch = 89.0f;
+		if (m_Pitch < -89.0f) m_Pitch = -89.0f;
 
 		// 球面坐标 → 笛卡尔坐标
 		float cosPitch = glm::cos(glm::radians(m_Pitch));
@@ -81,11 +115,13 @@ namespace Azer {
 	{
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(BIND_EVENT_FN(PerspectiveGraphicCameraController::OnMouseScrolled));
+		dispatcher.Dispatch<MouseButtonPressedEvent>(BIND_EVENT_FN(PerspectiveGraphicCameraController::OnMouseButtonPressed));
 	}
 
 	bool PerspectiveGraphicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
-		m_Distance -= e.GetYOffset() * 0.1;
+		float dist = m_Distance - e.GetYOffset() * m_Distance * 0.3;
+		m_Distance = std::max(0.5f, dist);
 
 		AZ_CORE_INFO("{}", e.ToString());
 		AZ_CORE_INFO("distance : {}", m_Distance);
@@ -94,6 +130,11 @@ namespace Azer {
 	}
 
 	bool PerspectiveGraphicCameraController::OnWindowResized(WindowResizeEvent& e)
+	{
+		return false;
+	}
+
+	bool PerspectiveGraphicCameraController::OnMouseButtonPressed(MouseButtonPressedEvent& e)
 	{
 		return false;
 	}

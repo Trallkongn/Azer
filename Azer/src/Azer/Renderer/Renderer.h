@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderCommand.h"
-#include "OrthoGraphicCamera.h"
+#include "GraphicCamera.h"
 #include "Shader.h"
 
 namespace Azer {

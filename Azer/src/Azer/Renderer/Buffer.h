@@ -115,7 +115,7 @@ namespace Azer {
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(void* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -133,7 +133,7 @@ namespace Azer {
 			return static_cast<uint32_t>(N);
 		}
 
-		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
+		static Ref<IndexBuffer> Create(void* indices, uint32_t count);
 	};
 
 	class UniformBuffer
@@ -154,6 +154,8 @@ namespace Azer {
 
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
+
+		virtual uint32_t GetRendererID() const = 0;
 
 		virtual void AttachColorTexture(uint32_t textureID, uint32_t target, int level = 0) = 0;
 		

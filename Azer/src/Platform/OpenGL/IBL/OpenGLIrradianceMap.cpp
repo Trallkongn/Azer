@@ -50,7 +50,10 @@ namespace Azer {
 			RenderCommand::FramebufferTexture2D(i, m_CubeMap->GetRendererID());
 			RenderCommand::SetViewport(0, 0, m_Width, m_Height);
 			RenderCommand::Clear();
+
+			m_VertexArray->Bind();
 			RenderCommand::DrawArray(m_VertexArray, 36);
+			m_VertexArray->UnBind();
 		}
 		m_fbrb->UnBind();
 

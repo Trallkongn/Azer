@@ -64,7 +64,10 @@ namespace Azer {
 
 			RenderCommand::SetViewport(0, 0, m_Width, m_Height);
 			RenderCommand::Clear();
+
+			m_VertexArray->Bind();
 			RenderCommand::DrawArray(m_VertexArray, 36);
+			m_VertexArray->UnBind();
 		}
 
 		m_fbrb->UnBind();
@@ -97,7 +100,9 @@ namespace Azer {
 		m_SkyBoxShader->SetMat4("u_Projection", projectionMatrix);
 		m_SkyBoxShader->SetMat4("u_View", glm::mat3(viewMatrix));
 
+		m_VertexArray->Bind();
 		RenderCommand::DrawArray(m_VertexArray, 36);
+		m_VertexArray->UnBind();
 
 		glDepthMask(GL_TRUE);
 		glDepthFunc(GL_LESS);

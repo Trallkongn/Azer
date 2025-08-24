@@ -8,7 +8,7 @@ namespace Azer {
 	class OpenGLVertexBuffer : public VertexBuffer
 	{
 	public:
-		OpenGLVertexBuffer(float* vertices, uint32_t size);
+		OpenGLVertexBuffer(void* vertices, uint32_t size);
 		~OpenGLVertexBuffer();
 
 		// Extended by VertexBuffer
@@ -25,7 +25,7 @@ namespace Azer {
 	class OpenGLIndexBuffer : public IndexBuffer
 	{
 	public:
-		OpenGLIndexBuffer(uint32_t* indeces, uint32_t count);
+		OpenGLIndexBuffer(void* indeces, uint32_t count);
 		~OpenGLIndexBuffer();
 
 		// Extended by IndexBuffer
@@ -62,6 +62,8 @@ namespace Azer {
 		void Bind() const override;
 
 		void UnBind() const override;
+
+		uint32_t GetRendererID() const { return m_FrameBuffer; }
 
 		void AttachColorTexture(uint32_t textureID, GLenum target = GL_TEXTURE_2D, int level = 0) override;
 

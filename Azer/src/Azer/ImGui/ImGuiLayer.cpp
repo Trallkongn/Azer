@@ -32,6 +32,7 @@ void Azer::ImGuiLayer::OnAttach()
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // ÆôÓÃ Docking
     //io.ConfigViewportsNoAutoMerge = true;
     //io.ConfigViewportsNoTaskBarIcon = true;
 
@@ -53,6 +54,13 @@ void Azer::ImGuiLayer::OnAttach()
     // Setup Platform/Renderer backends
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 410");
+
+    //io.Fonts->AddFontDefault();
+    io.Fonts->AddFontFromFileTTF("assets/fonts/HarmonyOS_Sans_Regular.ttf", 24.0f);
+    if (!io.Fonts->Build())
+    {
+        AZ_CORE_WARN("Failed to build font atlas!");
+    }
 }
 
 void Azer::ImGuiLayer::OnDetach()
@@ -68,9 +76,6 @@ void Azer::ImGuiLayer::OnDetach()
 void Azer::ImGuiLayer::OnImGuiRender()
 {
     AZ_PROFILE_FUNCTION();
-
-    /*static bool show = true;
-    ImGui::ShowDemoWindow(&show);*/
 }
 
 void Azer::ImGuiLayer::Begin()

@@ -17,6 +17,8 @@
 
 #include "Azer/DebugTools/Instrumentor.h"
 
+#include "Azer/Core/UUID.hpp"
+
 #ifdef AZ_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // AZ_PLATFORM_WINDOWS

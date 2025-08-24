@@ -61,7 +61,11 @@ namespace Azer {
 		m_fbrb->Bind();
 		RenderCommand::SetViewport(0, 0, 512, 512);
 		RenderCommand::Clear();
+
+		m_VertexArray->Bind();
 		RenderCommand::DrawArray(m_VertexArray, 6);
+		m_VertexArray->UnBind();
+
 		m_fbrb->UnBind();
 
 		glDepthMask(GL_TRUE);

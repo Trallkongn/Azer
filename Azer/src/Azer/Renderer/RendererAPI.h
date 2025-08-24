@@ -24,6 +24,10 @@ namespace Azer {
 
 		virtual void FramebufferTexture2D(uint32_t index, uint32_t rendererID, int miplevels = 0) = 0;
 
+		virtual void CullFace(bool statu = true) = 0;
+
+		virtual void BindTexUnit(uint32_t TexId, int slot = 0) = 0;
+
 		inline static API GetAPI() { return s_API; }
 	private:
 		static API s_API;

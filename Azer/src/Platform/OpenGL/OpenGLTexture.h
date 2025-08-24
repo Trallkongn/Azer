@@ -15,6 +15,8 @@ namespace Azer {
 
 		FileFormat GetFileFormat() const override { return m_FileFormat; }
 
+		uint32_t GetRendererID() const override { return m_RendererID; }
+
 		uint32_t GetWidth() const override { return m_Width; }
 		uint32_t GetHeight() const override { return m_Height; }
 		void Bind(uint32_t slot = 0) const override;
