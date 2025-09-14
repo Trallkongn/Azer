@@ -37,9 +37,9 @@ namespace Azer {
 		uint32_t Offset;
 		bool Normalized;
 		
-		BufferElements(ShaderDataType type, const std::string& name, bool isNormalized = false)
+		BufferElements(ShaderDataType type, const std::string& name,  bool isNormalized = false, uint32_t offset = 0)
 			: Name(name), Type(type), Size(ShaderDataTypeSize(type)), 
-			Offset(0), Normalized(isNormalized)
+			Offset(offset), Normalized(isNormalized)
 		{
 
 		}
@@ -89,13 +89,17 @@ namespace Azer {
 	private:
 		void CalculateOffsetAndStride()
 		{
-			uint32_t offset = 0;
 			m_Stride = 0;
 			for (auto& element : m_Elements)
 			{
-				element.Offset = offset;
-				offset += element.Size;
-				m_Stride += element.Size;
+				// 如果 Offset 已经非 0，说明用户手动指定过，保持原值
+				// 否则按累加方式自动计算
+				if (element.Offset == 0)
+				{
+					element.Offset = m_Stride;
+				}
+
+				m_Stride = element.Offset + element.Size;
 			}
 		}
 	};
@@ -111,7 +115,7 @@ namespace Azer {
 		virtual const BufferLayout& GetLayout() const = 0;
 		virtual void SetLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static Ref<VertexBuffer> Create(void* vertices, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -124,6 +128,37 @@ namespace Azer {
 
 		virtual uint32_t GetCount() const = 0;
 
-		static IndexBuffer* Create(uint32_t* indeces, uint32_t count);
+		template<typename T, size_t N>
+		static constexpr uint32_t CountOf(T const (&)[N]) {
+			return static_cast<uint32_t>(N);
+		}
+
+		static Ref<IndexBuffer> Create(void* indices, uint32_t count);
+	};
+
+	class UniformBuffer
+	{
+	public:
+		virtual ~UniformBuffer() = default;
+
+		virtual void Bind() const = 0;
+		virtual void UnBind() const = 0;
+
+		static Ref<UniformBuffer> Create();
+	};
+
+	class FrameBufferRenderBuffer
+	{
+	public:
+		virtual ~FrameBufferRenderBuffer() = default;
+
+		virtual void Bind() const = 0;
+		virtual void UnBind() const = 0;
+
+		virtual uint32_t GetRendererID() const = 0;
+
+		virtual void AttachColorTexture(uint32_t textureID, uint32_t target, int level = 0) = 0;
+		
+		static Ref<FrameBufferRenderBuffer> Create(uint32_t width = 512, uint32_t height = 512);
 	};
 }

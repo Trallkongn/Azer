@@ -5,17 +5,60 @@
 
 namespace Azer {
 
-	Ref<Texture2D> Texture2D::Create(const std::string& path)
+	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height, const unsigned char* data)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return std::make_shared<OpenGLTexture2D>(path);
+			return CreateRef<OpenGLTexture2D>(width, height,data);
 		}
 
 		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
 		return nullptr;
 	}
+
+	Ref<Texture2D> Texture2D::Create(const std::string& path, bool isHDR)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLTexture2D>(path, isHDR);
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
+
+	Ref<CubeMap> CubeMap::Create(uint32_t width, uint32_t height)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLCubeMap>(width,height);
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
+
+	Ref<CubeMap> CubeMap::Create(int miplevels)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLCubeMap>(miplevels);
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
+
 }

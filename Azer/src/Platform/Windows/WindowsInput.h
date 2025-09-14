@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Azer/Input.h"
+#include "Azer/Core/Input.h"
 
 namespace Azer {
 	class WindowsInput : public Input

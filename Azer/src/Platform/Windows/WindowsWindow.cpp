@@ -4,25 +4,27 @@
 #include "Azer/Events/ApplicationEvent.h"
 #include "Azer/Events/KeyEvent.h"
 #include "Azer/Events/MouseEvent.h"
-#include "../OpenGL/OpenGLContext.h"
 
+#include "Azer/Renderer/Renderer.h"
 
 namespace Azer {
 
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* description)
 	{
 		AZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 	}
 
-	Window* Window::Create(const WindowProps& props)
+	Scope<Window> Window::Create(const WindowProps& props)
 	{
-		return new WindowsWindow(props);
+		return CreateScope<WindowsWindow>(props);
 	}
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		Init(props);
 	}
 
@@ -33,6 +35,8 @@ namespace Azer {
 
 	void WindowsWindow::OnUpdate()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		glfwPollEvents();
 		m_Context->SwapBuffers();
 
@@ -40,6 +44,8 @@ namespace Azer {
 
 	void WindowsWindow::SetVSync(bool enable)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		if (enable) glfwSwapInterval(1);
 		else glfwSwapInterval(0);
 
@@ -53,27 +59,34 @@ namespace Azer {
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		AZ_PROFILE_FUNCTION();
+
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
 		AZ_CORE_INFO("Created window {0} ({1},{2})", props.Title, props.Width, props.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
-			// TODO: glfwTerminate on system shutdown
+			AZ_PROFILE_SCOPE("glfwInit");
 			int success = glfwInit();
 			AZ_CORE_ASSERT(success, "Could not initialize GLFW!");
-
 			glfwSetErrorCallback(GLFWErrorCallback);
-
-			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		
+		{
+			AZ_PROFILE_SCOPE("glfwCreateWindow");
+#if defined(HZ_DEBUG)
+			if (Renderer::GetAPI() == RendererAPI::API::OpenGL)
+				glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+			m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
+			++s_GLFWWindowCount;
+		}
+
 		// Azer make Windows Context API
-		m_Context = new OpenGLContext(m_Window);
+		m_Context = GraphicsContext::Create(m_Window);
 		m_Context->Init();
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
@@ -88,7 +101,6 @@ namespace Azer {
 
 			WindowResizeEvent event(width, height);
 			data.EventCallback(event);
-
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
@@ -164,6 +176,14 @@ namespace Azer {
 
 	void WindowsWindow::Shutdown()
 	{
+		AZ_PROFILE_FUNCTION();
 
+		glfwDestroyWindow(m_Window);
+		--s_GLFWWindowCount;
+
+		if (s_GLFWWindowCount == 0)
+		{
+			glfwTerminate();
+		}
 	}
 }

@@ -17,6 +17,7 @@ IncludeDir["Glad"] = "Azer/vendor/Glad/include"
 IncludeDir["ImGui"] = "Azer/vendor/imgui"
 IncludeDir["glm"] = "Azer/vendor/glm"
 IncludeDir["stb_image"] = "Azer/vendor/stb_image"
+IncludeDir["tiny_gltf"] = "Azer/vendor/tiny_gltf"
 
 include "Azer/vendor/GLFW"
 include "Azer/vendor/Glad"
@@ -40,11 +41,15 @@ project "Azer"
   {
     "%{prj.name}/src/**.h",
     "%{prj.name}/src/**.cpp",
+    "%{prj.name}/src/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.hpp",
     "%{prj.name}/vendor/glm/glm/**.h",
     "%{prj.name}/vendor/glm/glm/**.inl",
     "%{prj.name}/vendor/stb_image/**.h",
     "%{prj.name}/vendor/stb_image/**.cpp",
+    "%{prj.name}/vendor/tiny_gltf/**.h",
+    "%{prj.name}/vendor/tiny_gltf/**.cpp",
+    "%{prj.name}/vendor/tiny_gltf/**.hpp",
   }
 
   defines
@@ -60,7 +65,8 @@ project "Azer"
     "%{IncludeDir.Glad}",
     "%{IncludeDir.ImGui}",
     "%{IncludeDir.glm}",
-    "%{IncludeDir.stb_image}"
+    "%{IncludeDir.stb_image}",
+    "%{IncludeDir.tiny_gltf}"
   }
 
   links
@@ -85,25 +91,24 @@ project "Azer"
   filter "configurations:Debug"
     defines "AZ_DEBUG"
     runtime "Debug"
-    symbols "On"
+    symbols "on"
 
   filter "configurations:Release"
     defines "AZ_RELEASE"
     runtime "Release"
-    optimize "On"
+    optimize "on"
 
   filter "configurations:Dist"
     defines "AZ_DIST"
     runtime "Release"
-    optimize "Full"
-    symbols "Off"
+    optimize "on"
   
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
-    staticruntime "On"
+    staticruntime "on"
     buildoptions { "/utf-8"}
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -120,7 +125,7 @@ project "Sandbox"
     "Azer/vendor/spdlog/include",
     "Azer/src",
     "Azer/vendor",
-    "%{IncludeDir.glm}",
+    "%{IncludeDir.glm}"
   }
 
   links
@@ -149,5 +154,57 @@ project "Sandbox"
   filter "configurations:Dist"
     defines "AZ_DIST"
     runtime "Release"
-    optimize "Full"
-    symbols "off"
+    optimize "on"
+
+project "Azer-Editor"
+    location "Azer-Editor"
+    kind "ConsoleApp"
+    language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
+    buildoptions { "/utf-8"}
+
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+  files
+  {
+    "%{prj.name}/src/**.h",
+    "%{prj.name}/src/**.cpp",
+  }
+
+  includedirs
+  {
+    "Azer/vendor/spdlog/include",
+    "Azer/src",
+    "Azer/vendor",
+    "%{IncludeDir.glm}"
+  }
+
+  links
+  {
+    "Azer"
+  }
+
+  filter "system:windows"
+    systemversion "latest"
+
+    defines
+    {
+      "AZ_PLATFORM_WINDOWS"
+    }
+
+  filter "configurations:Debug"
+    defines "AZ_DEBUG"
+    runtime "Debug"
+    symbols "on"
+
+  filter "configurations:Release"
+    defines "AZ_RELEASE"
+    runtime "Release"
+    optimize "on"
+
+  filter "configurations:Dist"
+    defines "AZ_DIST"
+    runtime "Release"
+    optimize "on"

@@ -8,11 +8,16 @@
 
 #include <string>
 #include <sstream>
+#include <array>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Azer/Log.h"
+#include "Azer/Core/Log.h"
+
+#include "Azer/DebugTools/Instrumentor.h"
+
+#include "Azer/Core/UUID.hpp"
 
 #ifdef AZ_PLATFORM_WINDOWS
 	#include <Windows.h>

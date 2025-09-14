@@ -1,7 +1,8 @@
 #include "azpch.h"
-#include "Renderer.h"
 
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "Renderer.h"
+#include "Renderer2D.h"
+#include <Azer/Renderer3D/Renderer3D.h>
 
 namespace Azer {
 
@@ -9,30 +10,42 @@ namespace Azer {
 
 	void Renderer::Init()
 	{
+		AZ_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
+		Renderer2D::Init();
+		Renderer3D::Init();
+		
 	}
 
-	void Renderer::BeginScene(OrthoGraphicCamera& camera)
+	void Renderer::OnWindowResize(uint32_t width, uint32_t height)
+	{
+		RenderCommand::SetViewport(0, 0, width, height);
+	}
+
+	void Renderer::BeginScene(GraphicCamera& camera)
 	{
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 	}
 
 	void Renderer::EndScene()
 	{
-
+		Renderer2D::EndScene();
+		Renderer3D::EndScene();
 	}
 
 	void Renderer::Submit(const Azer::Ref<VertexArray>& vertexArray, const Azer::Ref<Shader> shader, const glm::mat4& transform)
 	{
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->SetUniformMat4(m_SceneData->ViewProjectionMatrix, "u_ViewProjection");
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->SetUniformMat4(transform, "u_Transform");
+		shader->SetMat4("u_ViewProjection", m_SceneData->ViewProjectionMatrix);
+		shader->SetMat4("u_Transform", transform);
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
+		vertexArray->UnBind();
 	}
 
-	void Renderer::ResizeWindow(uint32_t width, uint32_t height)
+	void Renderer::Shutdown()
 	{
-		RenderCommand::SetViewport(0, 0, width, height);
+		Renderer2D::Shutdown();
 	}
 }

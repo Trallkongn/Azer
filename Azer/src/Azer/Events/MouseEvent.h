@@ -5,6 +5,7 @@
 #include "Event.h"
 
 namespace Azer {
+
 	class AZER_API MouseMovedEvent : public Event
 	{
 	private:

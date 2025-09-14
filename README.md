@@ -15,12 +15,8 @@ UI库：ImGui | Qt
 引擎图形接口抽象->不同图形接口（OpenGl、Vulcan、Direct3d）
 使用静态链接
 
-# 如何使用？
-
-将 premakefile下的premake5.lau文件复制到Azer/vendor的对应模块根目录下，
-
-然后点击GenerateProject.bat即可生成sln文件。
+# 目前的进度
+已配备事件系统、轮询系统、Layer、ImGui、文件系统、PBR渲染管线，正在制作网格系统...
 
 ---
-
->  请转至 3D 分支查看有关 3D 渲染的部分
+2025-08-22 Developer's log

@@ -2,9 +2,9 @@
 #include "ImGuiLayer.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
-#include "Azer/Application.h"
+#include "Azer/Core/Application.h"
 
-#include "Azer/Core.h"
+#include "Azer/Core/Core.h"
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
@@ -22,6 +22,8 @@ Azer::ImGuiLayer::~ImGuiLayer()
 
 void Azer::ImGuiLayer::OnAttach()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -30,6 +32,7 @@ void Azer::ImGuiLayer::OnAttach()
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Enable Docking
     io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Enable Multi-Viewport / Platform Windows
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // ÆôÓÃ Docking
     //io.ConfigViewportsNoAutoMerge = true;
     //io.ConfigViewportsNoTaskBarIcon = true;
 
@@ -51,10 +54,19 @@ void Azer::ImGuiLayer::OnAttach()
     // Setup Platform/Renderer backends
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 410");
+
+    // io.Fonts->AddFontDefault();
+    io.Fonts->AddFontFromFileTTF("assets/fonts/HarmonyOS_Sans_Regular.ttf", 24.0f);
+    if (!io.Fonts->Build())
+    {
+        AZ_CORE_WARN("Failed to build font atlas!");
+    }
 }
 
 void Azer::ImGuiLayer::OnDetach()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Cleanup
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
@@ -63,12 +75,13 @@ void Azer::ImGuiLayer::OnDetach()
 
 void Azer::ImGuiLayer::OnImGuiRender()
 {
-    /*static bool show = true;
-    ImGui::ShowDemoWindow(&show);*/
+    AZ_PROFILE_FUNCTION();
 }
 
 void Azer::ImGuiLayer::Begin()
 {
+    AZ_PROFILE_FUNCTION();
+
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
@@ -77,6 +90,8 @@ void Azer::ImGuiLayer::Begin()
 
 void Azer::ImGuiLayer::End()
 {
+    AZ_PROFILE_FUNCTION();
+
     ImGuiIO& io = ImGui::GetIO();
     Application& app = Application::Get();
     io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
