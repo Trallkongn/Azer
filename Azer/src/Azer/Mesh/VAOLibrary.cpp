@@ -47,9 +47,9 @@ namespace Azer {
 		Ref<VertexBuffer> vbo = VertexBuffer::Create(vertices, size);
 
 		BufferLayout layout = {
-			{ ShaderDataType::Float3, "aPos", false, offsetof(Vertex,position)},
+			{ ShaderDataType::Float3, "aPos", false, offsetof(Vertex,pos)},
 			{ ShaderDataType::Float3, "aNormal", false, offsetof(Vertex, normal)},
-			{ ShaderDataType::Float2, "aTexCoord", false, offsetof(Vertex, texCoord)}
+			{ ShaderDataType::Float2, "aTexCoord", false, offsetof(Vertex, uv)}
 		};
 
 		vbo->SetLayout(layout);

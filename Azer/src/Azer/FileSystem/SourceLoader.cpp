@@ -4,6 +4,7 @@
 
 #include <Azer/Renderer/Texture.h>
 #include <Azer/GLTF/GLTF.h>
+#include "Source/Image.h"
 
 namespace Azer {
 
@@ -17,9 +18,9 @@ namespace Azer {
 
         switch (fmt) {
         case FileFormat::PNG:
-            return LoadTexture(path);
+            return LoadImage(path);
         case FileFormat::JPEG:
-            return LoadTexture(path);
+            return LoadImage(path);
         case FileFormat::GLTF:
             return LoadGLTF(path);
         case FileFormat::GLB:
@@ -31,8 +32,8 @@ namespace Azer {
         }
     }
 
-    Ref<Asset> SourceLoader::LoadTexture(const std::string& path) {
-        return Texture2D::Create(path);
+    Ref<Asset> SourceLoader::LoadImage(const std::string& path, bool flip_vertically) {
+        return CreateRef<Image>(path, flip_vertically);
     }
 
     Ref<Asset> SourceLoader::LoadGLTF(const std::string& path)
@@ -42,7 +43,7 @@ namespace Azer {
 
     Ref<Asset> SourceLoader::LoadHDR(const std::string& path)
     {
-        return Texture2D::Create(path, true);
+        return Texture2D::Create(path);
     }
 
 }

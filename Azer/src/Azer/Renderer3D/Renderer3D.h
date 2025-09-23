@@ -20,6 +20,8 @@ namespace Azer {
 		static void BeginScene(PerspectiveGraphicCamera& camera);
 		static void EndScene();
 
+		static void UploadPendingMeshes();
+
 		static void DrawCursor(PerspectiveGraphicCamera& camera, const glm::vec3& centerPos, const glm::vec2& viewportSize);
 		static void DrawWorldGrid(PerspectiveGraphicCamera& camera);
 		static void DrawCube(const glm::vec3& position, const glm::vec3& size, const glm::vec4& color, const glm::vec3& rotation);
@@ -30,6 +32,6 @@ namespace Azer {
 	private:
 		static void PBRInit();
 
-		static void LoadMesh(Ref<VertexArray> vao, int index, const MeshData& mesh);
+		static void LoadMesh(Ref<VertexArray> vao, int index, const Mesh& mesh);
 	};
 }

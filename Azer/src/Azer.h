@@ -34,3 +34,8 @@
 
 // -- UI --------------------------------------
 #include "Azer/UI/FocusTest.h"
+
+#include "Azer/FileSystem/Asset.h"
+#include "Azer/Mesh/Mesh.h"
+#include "Azer/Model/GameObject.h"
+#include "Azer/FileSystem/Source/Image.h"

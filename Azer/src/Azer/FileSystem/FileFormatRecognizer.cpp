@@ -13,7 +13,7 @@ namespace Azer {
     }
 
     FileFormat FileFormatRecognizer::Recognize(const std::string& path) {
-        // 先尝试扩展名识别
+        // Try extent
         auto extPos = path.find_last_of('.');
         if (extPos != std::string::npos) {
             std::string ext = path.substr(extPos + 1);
@@ -21,7 +21,7 @@ namespace Azer {
             FileFormat fmt = RecognizeByExtension(ext);
             if (fmt != FileFormat::Unknown) return fmt;
         }
-        // 再尝试魔数识别
+        // Try Magic
         return RecognizeByMagic(path);
     }
 

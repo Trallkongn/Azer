@@ -33,7 +33,7 @@ namespace Azer {
 		m_RendererID = m_CubeMap->GetRendererID();
 
 		m_fbrb = FrameBufferRenderBuffer::Create(m_Width, m_Height);
-		m_HDR_texture = Texture2D::Create(HDRpath, true);
+		m_HDR_texture = Texture2D::Create(HDRpath);
 	}
 
 	OpenGLHDRtoCubeMap::~OpenGLHDRtoCubeMap()
@@ -51,7 +51,6 @@ namespace Azer {
 		glDepthMask(GL_FALSE);
 		glDepthFunc(GL_LEQUAL);
 		glDisable(GL_DEPTH_TEST);
-
 
 		m_fbrb->Bind();
 
@@ -106,7 +105,5 @@ namespace Azer {
 
 		glDepthMask(GL_TRUE);
 		glDepthFunc(GL_LESS);
-
-		glEnable(GL_CULL_FACE);
 	}
 }

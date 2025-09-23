@@ -8,10 +8,10 @@ namespace Azer {
 
     class FileSystem {
     public:
-        // 获取单例
+        // Get instance
         static FileSystem& Instance();
 
-        // 加载文件到内存
+        // load file to memory
         std::string ReadTextFile(const std::string& path);
         std::vector<uint8_t> ReadBinaryFile(const std::string& path);
 

@@ -31,11 +31,17 @@
     <Filter Include="src\Azer\Mesh">
       <UniqueIdentifier>{8A96F3C8-F656-6FFF-BF91-B87C2B11B4DB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Azer\Model">
+      <UniqueIdentifier>{CEA36BE7-BA71-5FED-A305-D0138F723B52}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Azer\Renderer">
       <UniqueIdentifier>{741B2040-E031-1ED6-29A9-A9F795FEEE5D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Azer\Renderer3D">
       <UniqueIdentifier>{4BCF94C8-B730-72D6-409E-B888ACFEA895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Azer\Renderer3D\Components">
+      <UniqueIdentifier>{80AF0E41-6CD5-D8A7-551B-5E7341E0FD73}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Azer\UI">
       <UniqueIdentifier>{7B687BBC-E71D-F4B1-7012-EE88DCC6EAB5}</UniqueIdentifier>
@@ -114,6 +120,9 @@
     <ClInclude Include="src\Azer\Core\MouseButtonCodes.h">
       <Filter>src\Azer\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Core\ThreadPool.h">
+      <Filter>src\Azer\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Core\TimeStep.h">
       <Filter>src\Azer\Core</Filter>
     </ClInclude>
@@ -147,6 +156,9 @@
     <ClInclude Include="src\Azer\FileSystem\FileSystem.h">
       <Filter>src\Azer\FileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\FileSystem\Source\Image.h">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\FileSystem\SourceLoader.h">
       <Filter>src\Azer\FileSystem</Filter>
     </ClInclude>
@@ -156,14 +168,26 @@
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h">
       <Filter>src\Azer\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\ImGui\ImGuiLogSink.h">
+      <Filter>src\Azer\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Material\Material.h">
       <Filter>src\Azer\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Mesh\Mesh.h">
+      <Filter>src\Azer\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Mesh\MeshLibrary.h">
       <Filter>src\Azer\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Mesh\VAOLibrary.h">
       <Filter>src\Azer\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Model\GameObject.h">
+      <Filter>src\Azer\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Model\Object3D.h">
+      <Filter>src\Azer\Model</Filter>
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer\Buffer.h">
       <Filter>src\Azer\Renderer</Filter>
@@ -207,6 +231,12 @@
     <ClInclude Include="src\Azer\Renderer\VertexArray.h">
       <Filter>src\Azer\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\Components\Cursor.h">
+      <Filter>src\Azer\Renderer3D\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\Renderer3D\Components\WorldGrid.h">
+      <Filter>src\Azer\Renderer3D\Components</Filter>
+    </ClInclude>
     <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h">
       <Filter>src\Azer\Renderer3D</Filter>
     </ClInclude>
@@ -215,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h">
       <Filter>src\Azer\Renderer3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Azer\UI\FocusTest.h">
+      <Filter>src\Azer\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\IBL\OpenGLBRDFLUT.h">
       <Filter>src\Platform\OpenGL\IBL</Filter>
@@ -1554,11 +1587,8 @@
     <ClInclude Include="vendor\tiny_gltf\tiny_gltf.h">
       <Filter>vendor\tiny_gltf</Filter>
     </ClInclude>
-    <ClInclude Include="src\Azer\Renderer3D\Components\WorldGrid.h" />
-    <ClInclude Include="src\Azer\Renderer3D\Components\Cursor.h" />
-    <ClInclude Include="src\Azer\Core\ThreadPool.h" />
-    <ClInclude Include="src\Azer\ImGui\ImGuiLogSink.h" />
-    <ClInclude Include="src\Azer\UI\FocusTest.h" />
+    <ClInclude Include="src\Azer\FileSystem\FileFormat.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLThread.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Azer\Core\Application.cpp">
@@ -1577,6 +1607,9 @@
       <Filter>src\Azer\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\FileSystem\FileSystem.cpp">
+      <Filter>src\Azer\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\FileSystem\Source\Image.cpp">
       <Filter>src\Azer\FileSystem</Filter>
     </ClCompile>
     <ClCompile Include="src\Azer\FileSystem\SourceLoader.cpp">
@@ -1636,6 +1669,12 @@
     <ClCompile Include="src\Azer\Renderer\VertexArray.cpp">
       <Filter>src\Azer\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\Components\Cursor.cpp">
+      <Filter>src\Azer\Renderer3D\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\Renderer3D\Components\WorldGrid.cpp">
+      <Filter>src\Azer\Renderer3D\Components</Filter>
+    </ClCompile>
     <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp">
       <Filter>src\Azer\Renderer3D</Filter>
     </ClCompile>
@@ -1644,6 +1683,9 @@
     </ClCompile>
     <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp">
       <Filter>src\Azer\Renderer3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Azer\UI\FocusTest.cpp">
+      <Filter>src\Azer\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\IBL\OpenGLBRDFLUT.cpp">
       <Filter>src\Platform\OpenGL\IBL</Filter>
@@ -1696,8 +1738,6 @@
     <ClCompile Include="vendor\tiny_gltf\tiny_gltf.cpp">
       <Filter>vendor\tiny_gltf</Filter>
     </ClCompile>
-    <ClCompile Include="src\Azer\Renderer3D\Components\WorldGrid.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\Components\Cursor.cpp" />
-    <ClCompile Include="src\Azer\UI\FocusTest.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLThread.cpp" />
   </ItemGroup>
 </Project>

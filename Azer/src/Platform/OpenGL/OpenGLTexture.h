@@ -9,11 +9,10 @@ namespace Azer {
 	class OpenGLTexture2D : public Texture2D 
 	{
 	public:
-		OpenGLTexture2D(uint32_t width, uint32_t height, const unsigned char* data = nullptr);
-		OpenGLTexture2D(const std::string& path, bool isHDR = false);
+		OpenGLTexture2D(uint32_t width, uint32_t height);
+		OpenGLTexture2D(uint32_t width, uint32_t height, uint32_t channels, const unsigned char* data);
+		OpenGLTexture2D(const std::string& path);
 		virtual ~OpenGLTexture2D();
-
-		FileFormat GetFileFormat() const override { return m_FileFormat; }
 
 		uint32_t GetRendererID() const override { return m_RendererID; }
 
@@ -27,8 +26,6 @@ namespace Azer {
 		uint32_t m_Width, m_Height;
 		uint32_t m_RendererID;
 		GLenum m_InternalFormat, m_DataFormat;
-
-		FileFormat m_FileFormat;
 	};
 
 	class OpenGLCubeMap : public CubeMap

@@ -5,28 +5,42 @@
 
 namespace Azer {
 
-	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height, const unsigned char* data)
+	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return CreateRef<OpenGLTexture2D>(width, height,data);
+			return CreateRef<OpenGLTexture2D>(width, height);
 		}
 
 		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
 		return nullptr;
 	}
 
-	Ref<Texture2D> Texture2D::Create(const std::string& path, bool isHDR)
+	Ref<Texture2D> Texture2D::Create(uint32_t width, uint32_t height, uint32_t channels, const unsigned char* data)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None:
 			return nullptr;
 		case RendererAPI::API::OpenGL:
-			return CreateRef<OpenGLTexture2D>(path, isHDR);
+			return CreateRef<OpenGLTexture2D>(width, height,channels,data);
+		}
+
+		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");
+		return nullptr;
+	}
+
+	Ref<Texture2D> Texture2D::Create(const std::string& path)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None:
+			return nullptr;
+		case RendererAPI::API::OpenGL:
+			return CreateRef<OpenGLTexture2D>(path);
 		}
 
 		AZ_CORE_ASSERT(false, "UnKnow RendererAPI!");

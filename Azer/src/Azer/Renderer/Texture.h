@@ -21,8 +21,9 @@ namespace Azer {
 	class Texture2D : public Texture
 	{
 	public:
-		static Ref<Texture2D> Create(uint32_t width, uint32_t height, const unsigned char* data = nullptr);
-		static Ref<Texture2D> Create(const std::string& path, bool isHDR = false);
+		static Ref<Texture2D> Create(uint32_t width, uint32_t height);
+		static Ref<Texture2D> Create(uint32_t width, uint32_t height, uint32_t channels, const unsigned char* data);
+		static Ref<Texture2D> Create(const std::string& path);
 	};
 
 	class CubeMap

@@ -43,6 +43,8 @@ namespace Azer {
 
         Renderer3D::BeginScene(m_CameraController.GetCamera());
 
+        Renderer3D::UploadPendingMeshes();
+
         if (m_EnableGrid)
         {
             Renderer3D::DrawWorldGrid(m_CameraController.GetCamera());

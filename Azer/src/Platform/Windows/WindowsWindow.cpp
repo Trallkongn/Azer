@@ -39,7 +39,6 @@ namespace Azer {
 
 		glfwPollEvents();
 		m_Context->SwapBuffers();
-
 	}
 
 	void WindowsWindow::SetVSync(bool enable)

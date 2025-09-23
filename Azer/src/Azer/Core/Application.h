@@ -50,7 +50,6 @@ namespace Azer {
 		glm::vec4 m_ClearColor = { 0.2f, 0.2f, 0.2f, 1.0f };
 	private:
 		static Application* s_Instance;
-
 	};
 
 	// To be defined in CLIENT

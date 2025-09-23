@@ -1,26 +1,30 @@
 #pragma once
 #include <string>
 #include <Azer/Core/UUID.hpp>
+#include "FileFormat.h"
 
 namespace Azer {
-
-    enum class FileFormat;
 
     class Asset
     {
     public:
-        virtual ~Asset() = default;
+        Asset()
+          : m_Format(FileFormat::Unknown)
+        {
+            id = UUID::GenerateV4();
+            m_Name = id.ToString();
+        }
+        virtual ~Asset() {};
 
-        virtual FileFormat GetFileFormat() const = 0;
-
-        void SetName(const std::string& name) { m_Name = name; }
-        const std::string& GetName() const { return m_Name; }
-
-        UUID GetAssetID() const { return m_ID; }
-
+        FileFormat GetFileFormat() const { return m_Format; };
+        void SetAssetName(const std::string& name) { m_Name = name; }
+        const std::string& GetAssetName() const { return m_Name; }
+        const std::string& GetAssetID() const { return id.ToString(); }
     protected:
+        UUID id;
         std::string m_Name;
-        UUID m_ID = UUID::GenerateV4();
+        FileFormat m_Format;
+        
     };
 }
 

@@ -1,16 +1,11 @@
 ﻿#include "azpch.h"
 #include "OpenGLTexture.h"
-
-#include "stb_image.h"
-
 #include <glad/glad.h>
-
-#include <Azer/FileSystem/FileFormatRecognizer.h>
 
 namespace Azer {
 
 
-	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height, const unsigned char* data)
+	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		: m_Width(width), m_Height(height)
 	{
 		AZ_PROFILE_FUNCTION();
@@ -25,35 +20,58 @@ namespace Azer {
 		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-		if (data)
-		{
-			glTextureSubImage2D(
-				m_RendererID,
-				0, 0, 0, width, height,
-				m_DataFormat, GL_UNSIGNED_BYTE,
-				data
-			);
-
-			glGenerateMipmap(GL_TEXTURE_2D);
-		}
 	}
 
 
-	OpenGLTexture2D::OpenGLTexture2D(const std::string& path, bool isHDR)
+	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height, uint32_t channels, const unsigned char* data)
+	{
+		m_Width = width;
+		m_Height = height;
+
+		GLenum internalFormat = 0, dataFormat = 0;
+		if (channels == 4)
+		{
+			internalFormat = GL_RGBA8;
+			dataFormat = GL_RGBA;
+		}
+		else if (channels == 3)
+		{
+			internalFormat = GL_RGB8;
+			dataFormat = GL_RGB;
+		}
+
+		m_InternalFormat = internalFormat;
+		m_DataFormat = dataFormat;
+
+		AZ_CORE_ASSERT(internalFormat & dataFormat, "Format not supported!");
+
+		glCreateTextures(GL_TEXTURE_2D, 1, &m_RendererID);
+		glTextureStorage2D(m_RendererID, 1, internalFormat, m_Width, m_Height);
+
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+		glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
+	}
+
+	OpenGLTexture2D::OpenGLTexture2D(const std::string& path)
 		:m_Path(path)
 	{
 		AZ_PROFILE_FUNCTION();
 
 		int width, height, channels;
 
-		if (isHDR)
+		Image img(path,true);
+		ImageData imgData = img.GetData();
+		width = imgData.width;
+		height = imgData.height;
+		channels = imgData.channels;
+
+		if (img.IsHDR())
 		{
-			m_FileFormat = FileFormat::HDR;
-			AZ_CORE_INFO("start create HDR texture2D");
-			stbi_set_flip_vertically_on_load(true);
-			float* data = stbi_loadf(path.c_str(), &width, &height, &channels, 0);
-			AZ_CORE_ASSERT(data, "Failed to load HDR image!");
+			float* data = imgData.HDRdata;
 
 			m_Width = width;
 			m_Height = height;
@@ -78,17 +96,10 @@ namespace Azer {
 			glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 			glad_glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_FLOAT, data);
-
-			stbi_image_free(data);
-
-			AZ_CORE_INFO("finished create HDR texture2D");
 		}
 		else
 		{
-			m_FileFormat = FileFormatRecognizer::Instance().Recognize(path);
-			stbi_set_flip_vertically_on_load(1);
-			stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
-			AZ_CORE_ASSERT(data, "Failed to load image!");
+			unsigned char* data = imgData.buffer.data();
 
 			m_Width = width;
 			m_Height = height;
@@ -119,8 +130,6 @@ namespace Azer {
 			glTextureParameteri(m_RendererID, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
 			glTextureSubImage2D(m_RendererID, 0, 0, 0, m_Width, m_Height, dataFormat, GL_UNSIGNED_BYTE, data);
-
-			stbi_image_free(data);
 		}
 	}
 

@@ -4,9 +4,9 @@
 
 namespace Azer {
 
-    MeshData Azer::MeshLibrary::CreateCube(float size)
+    Mesh Azer::MeshLibrary::CreateCube(float size)
     {
-        MeshData mesh;
+        Mesh mesh;
         float h = size / 2.0f;
 
         // 每个面单独的顶点（因为法线不同，不能复用同一个位置）
@@ -35,9 +35,9 @@ namespace Azer {
         for (int f = 0; f < 6; f++) {
             for (int v = 0; v < 4; v++) {
                 Vertex vert;
-                vert.position = faceVertices[f][v];
+                vert.pos = faceVertices[f][v];
                 vert.normal = faceNormals[f];
-                vert.texCoord = uvs[v];
+                vert.uv = uvs[v];
                 mesh.vertices.push_back(vert);
             }
 
@@ -51,9 +51,9 @@ namespace Azer {
         return mesh;
     }
 
-    MeshData Azer::MeshLibrary::CreatePlane(float width, float depth)
+    Mesh Azer::MeshLibrary::CreatePlane(float width, float depth)
     {
-        MeshData mesh;
+        Mesh mesh;
         float hw = width / 2.0f;
         float hd = depth / 2.0f;
 
@@ -68,9 +68,9 @@ namespace Azer {
         return mesh;    
     }
 
-    MeshData Azer::MeshLibrary::CreateSphere(float radius, int stacks, int slices)
+    Mesh Azer::MeshLibrary::CreateSphere(float radius, int stacks, int slices)
     {
-        MeshData mesh;
+        Mesh mesh;
 
         for (int i = 0; i <= stacks; ++i) {
             float v = (float)i / stacks;
@@ -108,9 +108,9 @@ namespace Azer {
         return mesh;
     }
 
-    MeshData Azer::MeshLibrary::CreateCylinder(float radius, float height, int segments)
+    Mesh Azer::MeshLibrary::CreateCylinder(float radius, float height, int segments)
     {
-        MeshData mesh;
+        Mesh mesh;
         float halfH = height / 2.0f;
 
         // 圆周顶点

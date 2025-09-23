@@ -19,7 +19,7 @@ namespace Azer {
         SourceLoader(const SourceLoader&) = delete;
         SourceLoader& operator=(const SourceLoader&) = delete;
 
-        Ref<Asset> LoadTexture(const std::string& path);
+        Ref<Asset> SourceLoader::LoadImage(const std::string& path, bool flip_vertically = false);
         Ref<Asset> SourceLoader::LoadGLTF(const std::string& path);
         Ref<Asset> SourceLoader::LoadHDR(const std::string& path);
     };

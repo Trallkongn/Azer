@@ -41,7 +41,6 @@ namespace Azer {
 		};
 
 		WindowData m_Data;
-
 	};
 }
 

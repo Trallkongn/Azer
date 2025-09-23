@@ -26,19 +26,19 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v145</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -166,17 +166,20 @@
     <ClInclude Include="src\Azer\Events\KeyEvent.h" />
     <ClInclude Include="src\Azer\Events\MouseEvent.h" />
     <ClInclude Include="src\Azer\FileSystem\Asset.h" />
+    <ClInclude Include="src\Azer\FileSystem\FileFormat.h" />
     <ClInclude Include="src\Azer\FileSystem\FileFormatRecognizer.h" />
     <ClInclude Include="src\Azer\FileSystem\FileSystem.h" />
+    <ClInclude Include="src\Azer\FileSystem\Source\Image.h" />
     <ClInclude Include="src\Azer\FileSystem\SourceLoader.h" />
     <ClInclude Include="src\Azer\GLTF\GLTF.h" />
     <ClInclude Include="src\Azer\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Azer\ImGui\ImGuiLogSink.h" />
     <ClInclude Include="src\Azer\Material\Material.h" />
+    <ClInclude Include="src\Azer\Mesh\Mesh.h" />
     <ClInclude Include="src\Azer\Mesh\MeshLibrary.h" />
     <ClInclude Include="src\Azer\Mesh\VAOLibrary.h" />
-    <ClInclude Include="src\Azer\Renderer3D\Components\Cursor.h" />
-    <ClInclude Include="src\Azer\Renderer3D\Components\WorldGrid.h" />
+    <ClInclude Include="src\Azer\Model\GameObject.h" />
+    <ClInclude Include="src\Azer\Model\Object3D.h" />
     <ClInclude Include="src\Azer\Renderer\Buffer.h" />
     <ClInclude Include="src\Azer\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Azer\Renderer\GraphicCamera.h" />
@@ -191,6 +194,8 @@
     <ClInclude Include="src\Azer\Renderer\Shader.h" />
     <ClInclude Include="src\Azer\Renderer\Texture.h" />
     <ClInclude Include="src\Azer\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Azer\Renderer3D\Components\Cursor.h" />
+    <ClInclude Include="src\Azer\Renderer3D\Components\WorldGrid.h" />
     <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.h" />
     <ClInclude Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.h" />
     <ClInclude Include="src\Azer\Renderer3D\Renderer3D.h" />
@@ -205,6 +210,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLThread.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
@@ -649,14 +655,13 @@
     <ClCompile Include="src\Azer\Core\Log.cpp" />
     <ClCompile Include="src\Azer\FileSystem\FileFormatRecognizer.cpp" />
     <ClCompile Include="src\Azer\FileSystem\FileSystem.cpp" />
+    <ClCompile Include="src\Azer\FileSystem\Source\Image.cpp" />
     <ClCompile Include="src\Azer\FileSystem\SourceLoader.cpp" />
     <ClCompile Include="src\Azer\GLTF\GLTF.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Azer\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Azer\Mesh\MeshLibrary.cpp" />
     <ClCompile Include="src\Azer\Mesh\VAOLibrary.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\Components\Cursor.cpp" />
-    <ClCompile Include="src\Azer\Renderer3D\Components\WorldGrid.cpp" />
     <ClCompile Include="src\Azer\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Azer\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Azer\Renderer\GraphicsContext.cpp" />
@@ -670,6 +675,8 @@
     <ClCompile Include="src\Azer\Renderer\Shader.cpp" />
     <ClCompile Include="src\Azer\Renderer\Texture.cpp" />
     <ClCompile Include="src\Azer\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\Components\Cursor.cpp" />
+    <ClCompile Include="src\Azer\Renderer3D\Components\WorldGrid.cpp" />
     <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCamera.cpp" />
     <ClCompile Include="src\Azer\Renderer3D\PerspectiveGraphicCameraController.cpp" />
     <ClCompile Include="src\Azer\Renderer3D\Renderer3D.cpp" />
@@ -684,6 +691,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLThread.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

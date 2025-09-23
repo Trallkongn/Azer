@@ -7,7 +7,7 @@
 
 namespace Azer {
 
-	class AZER_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	private:
 		unsigned int m_Width, m_Height;
@@ -29,7 +29,7 @@ namespace Azer {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AZER_API WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -37,7 +37,7 @@ namespace Azer {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AZER_API AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -45,7 +45,7 @@ namespace Azer {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AZER_API AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -53,7 +53,7 @@ namespace Azer {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class AZER_API AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}
